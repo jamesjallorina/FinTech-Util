@@ -33,6 +33,6 @@ Abstract:
 class TlvDecode{
 public:
 	TlvDecode();
-	virtual ~TlvDecode();
+	~TlvDecode();
 	void DecodeChipDataTag(string TagData);
 };
