@@ -44,56 +44,57 @@ TlvDecode::~TlvDecode() { } //end of destructor
 
 void TlvDecode::DecodeChipDataTag(string TagData)
 {
- static char acChipData[DBG_LEN];
- init_char(acChipData); 
- static char acTag[5];
- init_char(acTag);
- static char acTagLength[3];
- init_char(acTagLength);
- static char acTagData[256];
- init_char(acTagData);
+ 	static char acChipData[DBG_LEN];
+ 	init_char(acChipData); 
+ 	static char acTag[5];
+ 	init_char(acTag);
+ 	static char acTagLength[3];
+ 	init_char(acTagLength);
+	static char acTagData[256];
+ 	init_char(acTagData);
  
- sprintf(acChipData,'%s',TagData); //load the value to character array
+ 	sprintf(acChipData,'%s',TagData); //load the value to character array
  
- static int iDataLength = 0, iChipDataLength = 0, iTagIndex = 0, int iCounter = 0;
- static char acDataTagValue[256];
- memset(acDataTagValue,'\0',sizeof(acDataTagValue));
+ 	static int iDataLength = 0, iChipDataLength = 0, iTagIndex = 0, int iCounter = 0;
+ 	static char acDataTagValue[256];
+ 	memset(acDataTagValue,'\0',sizeof(acDataTagValue));
  
- iChipDataLength = strlen(acChipData);
+ 	iChipDataLength = strlen(acChipData);
  
  
- while(iTagIndex < iChipDataLenght)
- {
- memset(acTag,'\0',sizeof(acTag)); // We will reset the value for Tag Catching
- memset(acTagLength, '\0',sizeof(acTagLength));
- memset(acTagData, '\0',sizeof(acTagData));
- /**
- * Copy the first Tag with the default of 4bytes Tag Data
- **/
- memcpy(acTag,acChipData,4); 
+ 	while(iTagIndex < iChipDataLenght)
+	{
+ 		memset(acTag,'\0',sizeof(acTag)); // We will reset the value for Tag Catching
+ 		memset(acTagLength, '\0',sizeof(acTagLength));
+ 		memset(acTagData, '\0',sizeof(acTagData));
+ 		/**
+ 		* Copy the first Tag with the default of 4bytes Tag Data
+ 		**/
+ 		memcpy(acTag,acChipData,4); 
  
- /**
- * Check if the Tag Data has an 'F' Value
- * else none we will treat it as 2bytes Tag Data
- **/
- if(acTag[1] == 'F')
- {
-	iDataLength = 4;
- }
- else
- {
-	iDataLength = 2;
-	memcpy(acTag,acChipData,2); //copy only the first 2bytes if non 'F' value
- }
- iTagIndex += iDataLength; //move the index depends on the value of Data Tag
- memcpy(acTagLength,acChipData + iTagIndex, 2);
- iDataTagLength = strtol(acTagLength,NULL,16);
+ 		/**
+ 		* Check if the Tag Data has an 'F' Value
+ 		* else none we will treat it as 2bytes Tag Data
+ 		**/
+ 		if(acTag[1] == 'F')
+ 		{
+			iDataLength = 4;
+ 		}
+		else
+ 		{
+			iDataLength = 2;
+			memcpy(acTag,acChipData,2); //copy only the first 2bytes if non 'F' value
+ 		}
+ 		iTagIndex += iDataLength; //move the index depends on the value of Data Tag
+		memcpy(acTagLength,acChipData + iTagIndex, 2);
+ 		iDataTagLength = strtol(acTagLength,NULL,16);
  
- iTagIndex += 2; // We will add 2 bytes for length and move the index
+ 		iTagIndex += 2; // We will add 2 bytes for length and move the index
  
- //now we will copy the Tag Value and we will move again depends on the length
- memcpy(acTagData,acChipData+iTagIndex, iDataLength*2);
- printf("TAG::%s::TAG LENGTH::%s::TAG VALUE::%s",acTag,acTagLength,acTagData);
+ 		//now we will copy the Tag Value and we will move again depends on the length
+ 		memcpy(acTagData,acChipData+iTagIndex, iDataLength*2);
+ 		printf("TAG::%s::TAG LENGTH::%s::TAG VALUE::%s",acTag,acTagLength,acTagData);
  
- //sprintf(acWholeDataTag,"%s%s",acWholeDataTag,acTagData); // may use depends on system requirement
+ 		//sprintf(acWholeDataTag,"%s%s",acWholeDataTag,acTagData); // may use depends on system requirement
+	}
 }
