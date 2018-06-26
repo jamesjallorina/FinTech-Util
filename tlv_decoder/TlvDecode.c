@@ -44,19 +44,19 @@ TlvDecode::~TlvDecode() { } //end of destructor
 
 void TlvDecode::DecodeChipDataTag(string TagData)
 {
- 	static char acChipData[DBG_LEN];
+ 	char acChipData[DBG_LEN];
  	init_char(acChipData); 
- 	static char acTag[5];
+ 	char acTag[5];
  	init_char(acTag);
- 	static char acTagLength[3];
+ 	char acTagLength[3];
  	init_char(acTagLength);
-	static char acTagData[256];
+	char acTagData[256];
  	init_char(acTagData);
  
  	sprintf(acChipData,'%s',TagData); //load the value to character array
  
- 	static int iDataLength = 0, iChipDataLength = 0, iTagIndex = 0, int iCounter = 0;
- 	static char acDataTagValue[256];
+ 	int iDataLength = 0, iChipDataLength = 0, iTagIndex = 0, int iCounter = 0;
+ 	char acDataTagValue[256];
  	memset(acDataTagValue,'\0',sizeof(acDataTagValue));
  
  	iChipDataLength = strlen(acChipData);
