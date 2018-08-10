@@ -30,9 +30,45 @@ Abstract:
 
 #define init_char(str) { memset(str,'\0',sizeof(str) } 
 
+struct emvbuf{
+	issuer_script_template_1[128+1];
+	issuer_script_template_2[128+1];
+	app_interchange_profile[2+1];
+	dedicated_file_name[16+1];
+	issuer_authentication_data[16+1];
+	terminal_verification_result[5+1];
+	transaction_date[3+1];
+	transaction_type[1+1];
+	transaction_currency_code[2+1];
+	amount_authorized[6+1];
+	amount_other[6+1];
+	application_identifier[16+1];
+	application_usage_control[2+1];
+	terminal_application_version_number[2+1];
+	issuer_application_data[32+1];
+	terminal_country_code[2+1];
+	interface_device_serial_number[8+1];
+	application_crpytogram[8+1];
+	cryptogram_information_data[1+1];
+	terminal_capability[3+1];
+	cardholder_verfication_method_result[3+1];
+	terminal_type[1+1];
+	application_transaction_counter[2+1];
+	unpredictable_number[4+1];
+	transaction_sequence_counter[4+1];
+	transaction_category_code[1+1];
+	issuer_script_result[25+1];
+	card_product_identification[16+1];
+	issuer_authorization_code[6+1];
+};
+
+
 class TlvDecode{
+	protected:
+		emvbuf *emvptr;
 public:
 	TlvDecode();
-	~TlvDecode();
-	void DecodeChipDataTag(string TagData);
+	virtual ~TlvDecode();
+	void DecodeChipDataTag(string sTagData);
+	virtual int emvdump(struct emvbuf *emvptr);
 };
