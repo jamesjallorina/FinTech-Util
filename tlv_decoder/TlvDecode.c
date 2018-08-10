@@ -22,7 +22,7 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 See the file 'LICENSE' for complete copying permission.
 
 Module Name:
-    TlvDecoder.c
+    TlvDecoder.cpp
 Abstract:
     This module decodes the TLV Chip Data Tag
 --*/
@@ -39,8 +39,19 @@ using namespace std;
 
 /** Constructor and Destructor **/
 
-TlvDecode::TlvDecode() { } //end of constructor
-TlvDecode::~TlvDecode() { } //end of destructor
+TlvDecode::TlvDecode() 
+{ 
+	emvptr = new emvbuf; 
+} //end of constructor
+
+TlvDecode::~TlvDecode() 
+{  
+	if(emvptr)
+	{
+		cout << "delete emvptr\n";
+		delete emvptr;
+	}
+} //end of destructor
 
 void TlvDecode::DecodeChipDataTag(string sTagData)
 {
@@ -55,7 +66,7 @@ void TlvDecode::DecodeChipDataTag(string sTagData)
  
  	sprintf(acChipData,'%s',sTagData); //load the value to character array
  
- 	int iDataLen = 0, iChipDataLen = 0, iTagIndex = 0, int iCounter = 0;
+ 	int iDataLen = 0, iChipDataLen = 0, iTagIndex = 0, int iCounter = 0, iDataTagLen = 0;
  	char acDataTagValue[256];
  	memset(acDataTagValue,'\0',sizeof(acDataTagValue));
  
@@ -87,14 +98,105 @@ void TlvDecode::DecodeChipDataTag(string sTagData)
  		}
  		iTagIndex += iDataLen; //move the index depends on the value of Data Tag
 		memcpy(acTagLength,acChipData + iTagIndex, 2);
- 		iDataTagLength = strtol(acTagLength,NULL,16);
+ 		iDataTagLen = strtol(acTagLength,NULL,16);
  
  		iTagIndex += 2; // We will add 2 bytes for length and move the index
  
  		//now we will copy the Tag Value and we will move again depends on the length
  		memcpy(acTagData,acChipData+iTagIndex, iDataLen*2);
- 		cout << "TAG:: "<< acTag << "::TAG LENGTH:: " <<  acTagLength << "::TAG VALUE::" << acTagData << ENDL;
- 
+ 		cout << "TAG:: "<< acTag << "::TAG LENGTH:: " <<  iDataTagLen << "::TAG VALUE::" << acTagData << ENDL;
+		switch(acTag)
+		{
+			case emv_tag_71:
+				memcpy(emvptr->issuer_script_template_1, acTagData, iDataTagLen);
+				break;
+			case emv_tag_72:
+				memcpy(emvptr->issuer_script_template_2, acTagData, iDataTagLen);
+				break;
+			case emv_tag_82:
+				memcpy(emvptr->app_interchange_profile, acTagData, iDataTagLen);
+				break;
+			case emv_tag_84: 
+				memcpy(emvptr->dedicated_file_name, acTagData, iDataTagLen);
+				break;
+			case emv_tag_91: 	
+				memcpy(emvptr->issuer_authentication_data, acTagData, iDataTagLen);
+				break;
+			case emv_tag_95: 	
+				memcpy(emvptr->terminal_verification_result, acTagData, iDataTagLen);
+				break;
+			case emv_tag_9A:
+				memcpy(emvptr->transaction_date, acTagData, iDataTagLen);
+				break;
+			case emv_tag_9C:	
+				memcpy(emvptr->transaction_type, acTagData, iDataTagLen);
+				break;
+			case emv_tag_5F2A:
+				memcpy(emvptr->transaction_currency_code, acTagData, iDataTagLen);
+				break;
+			case emv_tag_9F02:
+				memcpy(emvptr->amount_authorized, acTagData, iDataTagLen);
+				break;
+			case emv_tag_9F03:
+				memcpy(emvptr->amount_other, acTagData, iDataTagLen);
+				break;
+			case emv_tag_9F06:
+				memcpy(emvptr->application_identifier, acTagData, iDataTagLen);
+				break;
+			case emv_tag_9F07:
+				memcpy(emvptr->application_usage_control, acTagData, iDataTagLen);
+				break;
+			case emv_tag_9F09:
+				memcpy(emvptr->terminal_application_version_number, acTagData, iDataTagLen);
+				break;
+			case emv_tag_9F10:
+				memcpy(emvptr->issuer_application_data, acTagData, iDataTagLen);
+				break;
+			case emv_tag_9F1A:
+				memcpy(emvptr->terminal_country_code, acTagData, iDataTagLen);
+				break;
+			case emv_tag_9F1E:
+				memcpy(emvptr->interface_device_serial_number, acTagData, iDataTagLen);
+				break;
+			case emv_tag_9F26:
+				memcpy(emvptr->application_crpytogram, acTagData, iDataTagLen);
+				break;
+			case emv_tag_9F27:
+				memcpy(emvptr->cryptogram_information_data, acTagData, iDataTagLen);
+				break;
+			case emv_tag_9F33:
+				memcpy(emvptr->terminal_capability, acTagData, iDataTagLen);
+				break;
+			case emv_tag_9F34:
+				memcpy(emvptr->cardholder_verfication_method_result, acTagData, iDataTagLen);
+				break;
+			case emv_tag_9F35:
+				memcpy(emvptr->terminal_type, acTagData, iDataTagLen);
+				break;
+			case emv_tag_9F36:
+				memcpy(emvptr->application_transaction_counter, acTagData, iDataTagLen);
+				break;
+			case emv_tag_9F37:
+				memcpy(emvptr->unpredictable_number, acTagData, iDataTagLen);
+				break;
+			case emv_tag_9F41:
+				memcpy(emvptr->transaction_sequence_counter, acTagData, iDataTagLen);
+				break;
+			case emv_tag_9F53:
+				memcpy(emvptr->transaction_category_code, acTagData, iDataTagLen);
+				break;
+			case emv_tag_9F5B:
+				memcpy(emvptr->issuer_script_result, acTagData, iDataTagLen);
+				break;
+			case emv_tag_9F63:
+				memcpy(emvptr->card_product_identification, acTagData, iDataTagLen);
+				break;
+			case emv_tag_9F74:
+				memcpy(emvptr->issuer_authorization_code, acTagData, iDataTagLen);
+				break;
+			default:
+				break;
+		}
  		//sprintf(acWholeDataTag,"%s%s",acWholeDataTag,acTagData); // may use depends on system requirement
 	}
 }

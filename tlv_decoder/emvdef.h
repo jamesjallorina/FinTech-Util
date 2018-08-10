@@ -29,6 +29,36 @@ Abstract:
 #ifndef _EMV_DEF_H_
 #define _EMV_DEF_H_
 
+const char *emv_tag_71 		= "71";
+const char *emv_tag_72 		= "72";
+const char *emv_tag_82 		= "82";
+const char *emv_tag_84 		= "84"; 	
+const char *emv_tag_91 	    = "91"; 	
+const char *emv_tag_95 	    = "95"; 	
+const char *emv_tag_9A 	    = "9A"; 	
+const char *emv_tag_9C 	    = "9C"; 	
+const char *emv_tag_5F2A    = "5F2A";
+const char *emv_tag_9F02    = "9F02";
+const char *emv_tag_9F03    = "9F03";
+const char *emv_tag_9F06    = "9F06";
+const char *emv_tag_9F07    = "9F07";
+const char *emv_tag_9F09    = "9F09";
+const char *emv_tag_9F10    = "9F10";
+const char *emv_tag_9F1A    = "9F1A";
+const char *emv_tag_9F1E    = "9F1E";
+const char *emv_tag_9F26    = "9F26";
+const char *emv_tag_9F27    = "9F27";
+const char *emv_tag_9F33    = "9F33";
+const char *emv_tag_9F34    = "9F34";
+const char *emv_tag_9F35    = "9F35";
+const char *emv_tag_9F36    = "9F36";
+const char *emv_tag_9F37    = "9F37";
+const char *emv_tag_9F41    = "9F41";
+const char *emv_tag_9F53    = "9F53";
+const char *emv_tag_9F5B    = "9F5B";
+const char *emv_tag_9F63    = "9F63";
+const char *emv_tag_9F74    = "9F74";
+
 struct emvbuf{
 	issuer_script_template_1[128+1];
 	issuer_script_template_2[128+1];

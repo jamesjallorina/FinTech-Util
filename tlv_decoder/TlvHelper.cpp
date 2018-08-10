@@ -22,24 +22,13 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 See the file 'LICENSE' for complete copying permission.
 
 Module Name:
-    TlvDecode.h
+    TlvHelper.cpp
 Abstract:
-    This module decodes the TLV Chip Data Tag
+    This module store and process Tlv Data
 --*/
-#ifndef _TLV_DECODE_H_
-#define _TLV_DECODE_H_
 
-#include "emvdef.h"
+#include "TlvHelper.h"
 
-class TlvDecode
-{
-	private:
-		struct emvbuf *emvptr;
-	public:
-		TlvDecode();
-		virtual ~TlvDecode();
-		void DecodeChipDataTag(string sTagData);
-		virtual int emvdump(emvbuf *emvptr);
-};
 
-#endif
+TlvHelper::TlvHelper(){ }; //end of constructor
+TlvHelper::~TlvHelper() { };
