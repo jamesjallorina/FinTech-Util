@@ -1,0 +1,268 @@
+/*
+	Description: This is an ISO 8583 Message pack and un pack
+	Author: James Marjun Jallorina
+	Data: 08-06-2018
+*/
+
+#ifndef _ISO_8583_H_
+#define _ISO_8583_H_
+
+#define 	fieldlen2			19
+#define 	fieldlen3           6
+#define 	fieldlen4           12
+#define 	fieldlen5           12
+#define 	fieldlen6           12
+#define 	fieldlen7           10
+#define 	fieldlen8           8
+#define 	fieldlen9           8
+#define 	fieldlen10          8
+#define 	fieldlen11          6
+#define 	fieldlen12          6
+#define 	fieldlen13          4
+#define 	fieldlen14          4
+#define 	fieldlen15          4
+#define 	fieldlen16          4
+#define 	fieldlen17          4
+#define 	fieldlen18          4
+#define 	fieldlen19          3
+#define 	fieldlen20          3
+#define 	fieldlen21          3
+#define 	fieldlen22          3
+#define 	fieldlen23          3
+#define 	fieldlen24          3
+#define 	fieldlen25          2
+#define 	fieldlen26          2
+#define 	fieldlen27          1
+#define 	fieldlen28          8
+#define 	fieldlen29          8
+#define 	fieldlen30          8
+#define 	fieldlen31          8
+#define 	fieldlen32          11
+#define 	fieldlen33          11
+#define 	fieldlen34          28
+#define 	fieldlen35          37
+#define 	fieldlen36          104
+#define 	fieldlen37          12
+#define 	fieldlen38          6
+#define 	fieldlen39          2
+#define 	fieldlen40          3
+#define 	fieldlen41          8
+#define 	fieldlen42          15
+#define 	fieldlen43          40
+#define 	fieldlen44          25
+#define 	fieldlen45          76
+#define 	fieldlen46          999
+#define 	fieldlen47          999
+#define 	fieldlen48          999
+#define 	fieldlen49          3
+#define 	fieldlen50          3
+#define 	fieldlen51          3
+#define 	fieldlen52          8
+#define 	fieldlen53          6
+#define 	fieldlen54          120
+#define 	fieldlen55          999
+#define 	fieldlen56          999
+#define 	fieldlen57          999
+#define 	fieldlen58          999
+#define 	fieldlen59          999
+#define 	fieldlen60          999
+#define 	fieldlen61          999
+#define 	fieldlen62          999
+#define 	fieldlen63          999
+#define 	fieldlen64          16
+#define 	fieldlen65          1
+#define 	fieldlen66          1
+#define 	fieldlen67          2
+#define 	fieldlen68          3
+#define 	fieldlen69          3
+#define 	fieldlen70          3
+#define 	fieldlen71          4
+#define 	fieldlen72          4
+#define 	fieldlen73          6
+#define 	fieldlen74          10
+#define 	fieldlen75          10
+#define 	fieldlen76          10
+#define 	fieldlen77          10
+#define 	fieldlen78          10
+#define 	fieldlen79          10
+#define 	fieldlen80          10
+#define 	fieldlen81          10
+#define 	fieldlen82          12
+#define 	fieldlen83          12
+#define 	fieldlen84          12
+#define 	fieldlen85          12
+#define 	fieldlen86          16
+#define 	fieldlen87          16
+#define 	fieldlen88          16
+#define 	fieldlen89          16
+#define 	fieldlen90          42
+#define 	fieldlen91          1
+#define 	fieldlen92          2
+#define 	fieldlen93          5
+#define 	fieldlen94          7
+#define 	fieldlen95          42
+#define 	fieldlen96          64
+#define 	fieldlen97          16
+#define 	fieldlen98          25
+#define 	fieldlen99          11
+#define 	fieldlen100         11
+#define 	fieldlen101         17
+#define 	fieldlen102         28
+#define 	fieldlen103         28
+#define 	fieldlen104         100
+#define 	fieldlen105         999
+#define 	fieldlen106         999
+#define 	fieldlen107         999
+#define 	fieldlen108         999
+#define 	fieldlen109         999
+#define 	fieldlen110         999
+#define 	fieldlen111         999
+#define 	fieldlen112         999
+#define 	fieldlen113         999
+#define 	fieldlen114         999
+#define 	fieldlen115         999
+#define 	fieldlen116         999
+#define 	fieldlen117         999
+#define 	fieldlen118         999
+#define 	fieldlen119         999
+#define 	fieldlen120         999
+#define 	fieldlen121         999
+#define 	fieldlen122         999
+#define 	fieldlen123         999
+#define 	fieldlen124         999
+#define 	fieldlen125         999
+#define 	fieldlen126         999
+#define 	fieldlen127         999
+#define 	fieldlen128         64
+
+struct isomsg{
+	pan[fieldlen2 	 + 1];			
+	proc_code[fieldlen3 	 + 1];		
+	amt_trans[fieldlen4   + 1];
+	amt_sett[fieldlen5   + 1];
+	amt_ch_bill[fieldlen6   + 1];
+	trans_date_time[fieldlen7   + 1];
+	amt_ch_bill_fee[fieldlen8   + 1];
+	conv_rate_sett[fieldlen9   + 1];
+	conv_rate_ch_bill[fieldlen10  + 1];
+	trace[fieldlen11  + 1];
+	local_trans_time[fieldlen12  + 1];
+	local_trans_date[fieldlen13  + 1];
+	exp_date[fieldlen14  + 1];
+	sett_date[fieldlen15  + 1];
+	curr_conv_date[fieldlen16  + 1];
+	cap_date[fieldlen17  + 1];
+	merc_cat_code[fieldlen18  + 1];
+	acq_inst[fieldlen19  + 1];
+	PAN_ext[fieldlen20  + 1];
+	for_inst[fieldlen21  + 1];
+	pt_of_serv_mode[fieldlen22  + 1];
+	app_pan_seq_num[fieldlen23  + 1];
+	net_inter_iden[fieldlen24  + 1];
+	pt_of_serv_con_code[fieldlen25  + 1];
+	pt_of_serc_cap_code[fieldlen26  + 1];
+	auth_iden_resp_len[fieldlen27  + 1];
+	amt_trans_fee[fieldlen28  + 1];
+	amt_sett_fee[fieldlen29  + 1];
+	amt_trans_proc_fee[fieldlen30  + 1];
+	amt_trans_sett_fee[fieldlen31  + 1];
+	acq_inst_iden_code[fieldlen32  + 1];
+	for_inst_iden_code[fieldlen33  + 1];
+	pan_ext[fieldlen34  + 1];
+	track2[fieldlen35  + 1];
+	track3[fieldlen36  + 1];
+	ret_ref_num[fieldlen37  + 1];
+	auth_iden_resp[fieldlen38  + 1];
+	resp_code[fieldlen39  + 1];
+	serv_rest_code[fieldlen40  + 1];
+	card_acc_term_iden[fieldlen41  + 1];
+	card_acc_iden_code[fieldlen42  + 1];
+	card_acceptor_name[fieldlen43  + 1];
+	add_resp_data[fieldlen44  + 1];
+	track1[fieldlen45  + 1];
+	add_data_iso[fieldlen46  + 1];
+	add_data_national[fieldlen47  + 1];
+	add_data_private[fieldlen48  + 1];
+	curr_code_trans[fieldlen49  + 1];
+	curr_code_sett[fieldlen50  + 1];
+	curr_code_ch_bill[fieldlen51  + 1];
+	per_iden_num_data[fieldlen52  + 1];
+	sec_rel_cont_info[fieldlen53  + 1];
+	add_amts[fieldlen54  + 1];
+	emv_tags[fieldlen55  + 1];
+	f56_reserved[fieldlen56  + 1];
+	f57_reserved[fieldlen57  + 1];
+	f58_reserved[fieldlen58  + 1];
+	f59_reserved[fieldlen59  + 1];
+	f60_reserved[fieldlen60  + 1];
+	f61_reserved[fieldlen61  + 1];
+	f62_reserved[fieldlen62  + 1];
+	f63_reserved[fieldlen63  + 1];
+	msg_auth_code[fieldlen64  + 1];
+	ext_bm_indicator[fieldlen65  + 1];
+	sett_code[fieldlen66  + 1];
+	ext_payment_code[fieldlen67  + 1];
+	rcv_inst_country_code[fieldlen68  + 1];
+	sett_inst_country_code[fieldlen69  + 1];
+	net_mgt_info_code[fieldlen70  + 1];
+	msg_num[fieldlen71  + 1];
+	last_msg_num[fieldlen72  + 1];
+	act_date[fieldlen73  + 1];
+	num_of_cred[fieldlen74  + 1];
+	cred_rev_num[fieldlen75  + 1];
+	numb_of_deb[fieldlen76  + 1];
+	deb_rev_num[fieldlen77  + 1];
+	trans_num[fieldlen78  + 1];
+	trans_rev_num[fieldlen79  + 1];
+	num_of_inq[fieldlen80  + 1];
+	num_of_auth[fieldlen81  + 1];
+	cred_proc_fee_amt[fieldlen82  + 1];
+	cred_trans_fee_amt[fieldlen83  + 1];
+	deb_proc_fee_amt[fieldlen84  + 1];
+	deb_trans_fee_amt[fieldlen85  + 1];
+	tot_amt_of_cred[fieldlen86  + 1];
+	cred_rev_amt[fieldlen87  + 1];
+	tot_amt_of_deb[fieldlen88  + 1];
+	deb_rev_amt[fieldlen89  + 1];
+	orig_data_elems[fieldlen90  + 1];
+	file_upd_code[fieldlen91  + 1];
+	file_sec_code[fieldlen92  + 1];
+	resp_indi[fieldlen93  + 1];
+	serv_indi[fieldlen94  + 1];
+	repl_amts[fieldlen95  + 1];
+	msg_sec_code[fieldlen96  + 1];
+	net_sett_amt[fieldlen97  + 1];
+	payee[fieldlen98  + 1];
+	sett_inst_iden_code[fieldlen99  + 1];
+	recv_inst_iden_code[fieldlen100 + 1];
+	file_name[fieldlen101 + 1];
+	acct_iden_1[fieldlen102 + 1];
+	acct_iden_2[fieldlen103 + 1];
+	trans_des[fieldlen104 + 1];
+	f105_reserved[fieldlen105 + 1];
+	f106_reserved[fieldlen106 + 1];
+	f107_reserved[fieldlen107 + 1];
+	f108_reserved[fieldlen108 + 1];
+	f109_reserved[fieldlen109 + 1];
+	f110_reserved[fieldlen110 + 1];
+	f111_reserved[fieldlen111 + 1];
+	f112_reserved[fieldlen112 + 1];
+	f113_reserved[fieldlen113 + 1];
+	f114_reserved[fieldlen114 + 1];
+	f115_reserved[fieldlen115 + 1];
+	f116_reserved[fieldlen116 + 1];
+	f117_reserved[fieldlen117 + 1];
+	f118_reserved[fieldlen118 + 1];
+	f119_reserved[fieldlen119 + 1];
+	f120_reserved[fieldlen120 + 1];
+	f121_reserved[fieldlen121 + 1];
+	f122_reserved[fieldlen122 + 1];
+	f123_reserved[fieldlen123 + 1];
+	f124_reserved[fieldlen124 + 1];
+	f125_reserved[fieldlen125 + 1];
+	f126_reserved[fieldlen126 + 1];
+	f127_reserved[fieldlen127 + 1];
+	f128_reserved[fieldlen128 + 1];
+};
+
+#endif //_ISO_8583_H_
