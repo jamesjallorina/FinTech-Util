@@ -205,7 +205,6 @@ void TlvDecode::DecodeChipDataTag(string sTagData)
 
 int TlvDecode::emvdump(struct emvbuf *emvptr)
 {
-	this->emvptr = emvptr;
 	cout << "EMV DUMP START \n";
 	cout << "Issuer Script Template 1 : ["<<this->emvptr->issuer_script_template_1 << "] \n";							
 	cout << "Issuer Script Template 2 : ["	<<	this->emvptr->issuer_script_template_2 << "] \n";
