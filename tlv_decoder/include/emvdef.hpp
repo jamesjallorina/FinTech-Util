@@ -22,7 +22,7 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 See the file 'LICENSE' for complete copying permission.
 
 Module Name:
-    emvdef.h
+    emvdef.hpp
 Abstract:
     This module defines emv structure
 --*/
@@ -59,7 +59,7 @@ const long int emv_tag_9F5B    	= 40795;	//tag 9F5B
 const long int emv_tag_9F63    	= 40803;	//tag 9F63
 const long int emv_tag_9F74    	= 40820;	//tag 9F74
 
-struct emvbuf{
+typedef struct emvbuf{
 	issuer_script_template_1[128+1];
 	issuer_script_template_2[128+1];
 	app_interchange_profile[2+1];
@@ -91,4 +91,4 @@ struct emvbuf{
 	issuer_authorization_code[6+1];
 };
 
-#endif
+#endif	//_EMV_DEF_H_

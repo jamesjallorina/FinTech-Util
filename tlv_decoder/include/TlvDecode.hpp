@@ -22,7 +22,7 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 See the file 'LICENSE' for complete copying permission.
 
 Module Name:
-    TlvDecode.h
+    TlvDecode.hpp
 Abstract:
     This module decodes the TLV Chip Data Tag
 --*/
@@ -34,7 +34,7 @@ Abstract:
 class TlvDecode
 {
 	private:
-		struct emvbuf *emvptr;
+		emvbuf *emvptr;
 	public:
 		TlvDecode();
 		virtual ~TlvDecode();
@@ -42,4 +42,4 @@ class TlvDecode
 		virtual int emvdump(emvbuf *emvptr);
 };
 
-#endif
+#endif	//_TLV_DECODE_H_

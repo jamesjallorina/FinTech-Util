@@ -22,7 +22,7 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 See the file 'LICENSE' for complete copying permission.
 
 Module Name:
-    macros.h
+    macros.hpp
 Abstract:
     This module defines function macros
 --*/
@@ -32,4 +32,4 @@ Abstract:
 
 #define init_char(str) { memset(str,'\0',sizeof(str) } 
 
-#endif
+#endif	//_MACRO_H_

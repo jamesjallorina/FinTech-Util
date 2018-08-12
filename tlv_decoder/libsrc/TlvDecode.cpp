@@ -48,7 +48,7 @@ TlvDecode::~TlvDecode()
 {  
 	if(emvptr)
 	{
-		cout << "delete emvptr\n";
+		cout << "free *emvptr\n";
 		delete emvptr;
 	}
 } //end of destructor
@@ -205,6 +205,12 @@ void TlvDecode::DecodeChipDataTag(string sTagData)
 
 int TlvDecode::emvdump(struct emvbuf *emvptr)
 {
+	if(!emvptr)
+	{
+		cout << "emvptr is null \n";
+		return (-1);
+	}
+	
 	cout << "EMV DUMP START \n";
 	cout << "Issuer Script Template 1 : ["<<this->emvptr->issuer_script_template_1 << "] \n";							
 	cout << "Issuer Script Template 2 : ["	<<	this->emvptr->issuer_script_template_2 << "] \n";

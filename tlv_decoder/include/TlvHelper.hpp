@@ -22,7 +22,7 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 See the file 'LICENSE' for complete copying permission.
 
 Module Name:
-    TlvHelper.h
+    TlvHelper.hpp
 Abstract:
     This module store and process Tlv Data
 --*/
@@ -42,4 +42,4 @@ class TlvHelper
 		virtual ~TlvHelper();
 };
 
-#endif
+#endif	//_TLV_HELPER_H_
