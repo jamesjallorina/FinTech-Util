@@ -29,35 +29,35 @@ Abstract:
 #ifndef _EMV_DEF_H_
 #define _EMV_DEF_H_
 
-const char *emv_tag_71 		= "71";
-const char *emv_tag_72 		= "72";
-const char *emv_tag_82 		= "82";
-const char *emv_tag_84 		= "84"; 	
-const char *emv_tag_91 	    = "91"; 	
-const char *emv_tag_95 	    = "95"; 	
-const char *emv_tag_9A 	    = "9A"; 	
-const char *emv_tag_9C 	    = "9C"; 	
-const char *emv_tag_5F2A    = "5F2A";
-const char *emv_tag_9F02    = "9F02";
-const char *emv_tag_9F03    = "9F03";
-const char *emv_tag_9F06    = "9F06";
-const char *emv_tag_9F07    = "9F07";
-const char *emv_tag_9F09    = "9F09";
-const char *emv_tag_9F10    = "9F10";
-const char *emv_tag_9F1A    = "9F1A";
-const char *emv_tag_9F1E    = "9F1E";
-const char *emv_tag_9F26    = "9F26";
-const char *emv_tag_9F27    = "9F27";
-const char *emv_tag_9F33    = "9F33";
-const char *emv_tag_9F34    = "9F34";
-const char *emv_tag_9F35    = "9F35";
-const char *emv_tag_9F36    = "9F36";
-const char *emv_tag_9F37    = "9F37";
-const char *emv_tag_9F41    = "9F41";
-const char *emv_tag_9F53    = "9F53";
-const char *emv_tag_9F5B    = "9F5B";
-const char *emv_tag_9F63    = "9F63";
-const char *emv_tag_9F74    = "9F74";
+const long int emv_tag_71 		= 113;		//tag 71
+const long int emv_tag_72 		= 114;		//tag 72
+const long int emv_tag_82 		= 130;		//tag 82	
+const long int emv_tag_84 		= 132;		//tag 84 	
+const long int emv_tag_91 	    = 145;		//tag 91 	
+const long int emv_tag_95 	    = 149;		//tag 95 	
+const long int emv_tag_9A 	    = 154;		//tag 9A 	
+const long int emv_tag_9C 	    = 156;		//tag 9C 	
+const long int emv_tag_5F2A    	= 24362;	//tag 5F2A
+const long int emv_tag_9F02    	= 40706;	//tag 9F02
+const long int emv_tag_9F03    	= 40707;	//tag 9F03
+const long int emv_tag_9F06    	= 40710;	//tag 9F06
+const long int emv_tag_9F07    	= 40711;	//tag 9F07
+const long int emv_tag_9F09    	= 40713;	//tag 9F09
+const long int emv_tag_9F10    	= 40720;	//tag 9F10
+const long int emv_tag_9F1A    	= 40730;	//tag 9F1A
+const long int emv_tag_9F1E    	= 40734;	//tag 9F1E
+const long int emv_tag_9F26    	= 40742;	//tag 9F26
+const long int emv_tag_9F27    	= 40743;	//tag 9F27
+const long int emv_tag_9F33    	= 40755;	//tag 9F33
+const long int emv_tag_9F34    	= 40756;	//tag 9F34
+const long int emv_tag_9F35    	= 40757;	//tag 9F35
+const long int emv_tag_9F36    	= 40758;	//tag 9F36
+const long int emv_tag_9F37    	= 40759;	//tag 9F37
+const long int emv_tag_9F41    	= 40769;	//tag 9F41
+const long int emv_tag_9F53    	= 40787;	//tag 9F53
+const long int emv_tag_9F5B    	= 40795;	//tag 9F5B
+const long int emv_tag_9F63    	= 40803;	//tag 9F63
+const long int emv_tag_9F74    	= 40820;	//tag 9F74
 
 struct emvbuf{
 	issuer_script_template_1[128+1];

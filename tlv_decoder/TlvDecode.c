@@ -63,10 +63,11 @@ void TlvDecode::DecodeChipDataTag(string sTagData)
  	init_char(acTagLength);
 	char acTagData[256];
  	init_char(acTagData);
- 
+	
  	sprintf(acChipData,'%s',sTagData); //load the value to character array
  
  	int iDataLen = 0, iChipDataLen = 0, iTagIndex = 0, int iCounter = 0, iDataTagLen = 0;
+	long int  iTag = 0;
  	char acDataTagValue[256];
  	memset(acDataTagValue,'\0',sizeof(acDataTagValue));
  
@@ -105,7 +106,8 @@ void TlvDecode::DecodeChipDataTag(string sTagData)
  		//now we will copy the Tag Value and we will move again depends on the length
  		memcpy(acTagData,acChipData+iTagIndex, iDataLen*2);
  		cout << "TAG:: "<< acTag << "::TAG LENGTH:: " <<  iDataTagLen << "::TAG VALUE::" << acTagData << ENDL;
-		switch(acTag)
+		iTag = strtol(acTag, NULL, 16);
+		switch(iTag)
 		{
 			case emv_tag_71:
 				memcpy(emvptr->issuer_script_template_1, acTagData, iDataTagLen);
