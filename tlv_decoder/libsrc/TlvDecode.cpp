@@ -35,8 +35,6 @@ Abstract:
 
 using namespace std;
 
-#define DBG_LEN 2048
-
 /** Constructor and Destructor **/
 
 TlvDecode::TlvDecode() 
