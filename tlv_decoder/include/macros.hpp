@@ -30,6 +30,6 @@ Abstract:
 #ifndef _MACRO_H_
 #define _MACRO_H_
 
-#define init_char(str) { memset(str,'\0',sizeof(str) } 
+#define init_char(str) memset(str,'\0',sizeof(str)
 
 #endif	//_MACRO_H_
