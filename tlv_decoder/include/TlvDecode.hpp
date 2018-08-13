@@ -29,8 +29,6 @@ Abstract:
 #ifndef _TLV_DECODE_H_
 #define _TLV_DECODE_H_
 
-#include "emvdef.h"
-
 class TlvDecode
 {
 	private:

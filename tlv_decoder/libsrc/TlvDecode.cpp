@@ -26,12 +26,16 @@ Module Name:
 Abstract:
     This module decodes the TLV Chip Data Tag
 --*/
-#include "TlvDecode.h"
+
 #include <iostream>
 #include <stdlib.h>
 #include <string>
 #include <string.h>
 #include <stdio.h> 
+#include "TlvDecode.hpp"
+#include "macro.hpp"
+#include "emvdef.hpp"
+#iinclude "TlvHelper.hpp"
 
 using namespace std;
 
