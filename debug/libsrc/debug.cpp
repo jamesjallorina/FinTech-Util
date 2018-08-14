@@ -45,7 +45,7 @@ static bool isInitFileName = false;
 /****************************************************************************************************
 *	Author		: James Marjun Jallorina												          	*
 *	Date		: 08-14-2018                                                                      	*
-*	Parameter	: char * app_name /application name                                               	*
+*	Parameter	: char * app_name /application name   /                                            	*
 *	Description	: This function needs to be initialized first before you can use logging utility  	*
 *				  This initialize application name													*
 *****************************************************************************************************/
@@ -64,7 +64,7 @@ int app_name_init(char *app_name)
 /****************************************************************************************************
 *	Author		: James Marjun Jallorina												          	*
 *	Date		: 08-14-2018                                                                      	*
-*	Parameter	: char * app_name /application name                                               	*
+*	Parameter	: char * filename /to be used as logfile name /                                     *
 *	Description	: This function needs to be initialized first before you can use logging utility  	*
 *				  This initialize file name															*
 *****************************************************************************************************/
@@ -86,7 +86,7 @@ int debugOn(char *filename)
 /****************************************************************************************************
 *	Author		: James Marjun Jallorina												          	*
 *	Date		: 08-14-2018                                                                      	*
-*	Parameter	: char * app_name /application name                                               	*
+*	Parameter	: const char *format, ... /  same as sprintf msg formatting                         *
 *	Description	: This function prints debug message with level info								*
 *****************************************************************************************************/
 int printInfo(const char *format, ...)
@@ -126,8 +126,8 @@ int printInfo(const char *format, ...)
 /****************************************************************************************************
 *	Author		: James Marjun Jallorina												          	*
 *	Date		: 08-14-2018                                                                      	*
-*	Parameter	: char * app_name /application name                                               	*
-*	Description	: This function prints debug message with level debug							  	*
+*	Parameter	: const char *format, ... /  same as sprintf msg formatting                         *
+*	Description	: This function prints debug message with level debug								*
 *****************************************************************************************************/
 int printDebug(char *printmsg, const char *format, ...)
 {
@@ -166,8 +166,8 @@ int printDebug(char *printmsg, const char *format, ...)
 /****************************************************************************************************
 *	Author		: James Marjun Jallorina												          	*
 *	Date		: 08-14-2018                                                                      	*
-*	Parameter	: char * app_name /application name                                               	*
-*	Description	: This function prints debug message with level warning							  	*
+*	Parameter	: const char *format, ... /  same as sprintf msg formatting                         *
+*	Description	: This function prints debug message with level warning								*
 *****************************************************************************************************/
 int printWarn(char *printmsg, const char *format, ...)
 {
@@ -206,8 +206,8 @@ int printWarn(char *printmsg, const char *format, ...)
 /****************************************************************************************************
 *	Author		: James Marjun Jallorina												          	*
 *	Date		: 08-14-2018                                                                      	*
-*	Parameter	: char * app_name /application name                                               	*
-*	Description	: This function prints debug message with level fatal							  	*
+*	Parameter	: const char *format, ... /  same as sprintf msg formatting                         *
+*	Description	: This function prints debug message with level fatal								*
 *****************************************************************************************************/
 int printFatal(char *printmsg, const char *format, ...)
 {
@@ -246,8 +246,8 @@ int printFatal(char *printmsg, const char *format, ...)
 /****************************************************************************************************
 *	Author		: James Marjun Jallorina												          	*
 *	Date		: 08-14-2018                                                                      	*
-*	Parameter	: char * app_name /application name                                               	*
-*	Description	: This function prints debug message with level error							  	*
+*	Parameter	: const char *format, ... /  same as sprintf msg formatting                         *
+*	Description	: This function prints debug message with level error								*
 *****************************************************************************************************/
 int printError(char *printmsg, const char *format, ...)
 {
