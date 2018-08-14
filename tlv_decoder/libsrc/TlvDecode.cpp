@@ -48,10 +48,11 @@ TlvDecode::TlvDecode()
 
 TlvDecode::~TlvDecode() 
 {  
-	if(emvptr)
+	if(emvptr != NULL)
 	{
 		cout << "free *emvptr\n";
 		delete emvptr;
+		emvptr = NULL;
 	}
 } //end of destructor
 
