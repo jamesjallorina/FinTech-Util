@@ -36,6 +36,7 @@ Abstract:
 #include "macro.hpp"
 #include "emvdef.hpp"
 #iinclude "TlvHelper.hpp"
+#include "debug/include/debug.hpp"
 
 using namespace std;
 
@@ -50,7 +51,7 @@ TlvDecode::~TlvDecode()
 {  
 	if(emvptr != NULL)
 	{
-		cout << "free *emvptr\n";
+		printInfo("free *emvptr\n");
 		delete emvptr;
 		emvptr = NULL;
 	}
@@ -108,7 +109,8 @@ void TlvDecode::DecodeChipDataTag(string sTagData)
  
  		//now we will copy the Tag Value and we will move again depends on the length
  		memcpy(acTagData,acChipData+iTagIndex, iDataLen*2);
- 		cout << "TAG:: "<< acTag << "::TAG LENGTH:: " <<  iDataTagLen << "::TAG VALUE::" << acTagData << ENDL;
+ 		//cout << "TAG:: "<< acTag << "::TAG LENGTH:: " <<  iDataTagLen << "::TAG VALUE::" << acTagData << ENDL;
+		printDebug("TAG: [%s] TAGLEN: [%d] TAGVALUE: [%s] \n", acTag, iDataTagLen, acTagData);
 		iTag = strtol(acTag, NULL, 16);
 		switch(iTag)
 		{
@@ -210,40 +212,40 @@ int TlvDecode::emvdump(struct emvbuf *emvptr)
 {
 	if(!emvptr)
 	{
-		cout << "emvptr is null \n";
+		printDebug("emvptr is null \n");
 		return (-1);
 	}
 	
-	cout << "EMV DUMP START \n";
-	cout << "Issuer Script Template 1 : ["<<this->emvptr->issuer_script_template_1 << "] \n";							
-	cout << "Issuer Script Template 2 : ["	<<	this->emvptr->issuer_script_template_2 << "] \n";
-	cout << "Application Interchange Profile : ["	<<	this->emvptr->app_interchange_profile << "] \n";
-	cout << "Dedicated File Name : ["	<<	this->emvptr->dedicated_file_name << "] \n";
-	cout << "Issuer Authentication Data : ["	<<	this->emvptr->issuer_authentication_data << "] \n";
-	cout << "Terminal Verification Result : ["	<<	this->emvptr->terminal_verification_result << "] \n";
-	cout << "Transaction Date : ["	<<	this->emvptr->transaction_date << "] \n";
-	cout << "Transaction Type : ["	<<	this->emvptr->transaction_type << "] \n";
-	cout << "Transaction Currency Code : ["	<<	this->emvptr->transaction_currency_code << "] \n";
-	cout << "Amount Authorized : ["	<<	this->emvptr->amount_authorized << "] \n";
-	cout << "Amount Other : ["	<<	this->emvptr->amount_other << "] \n";
-	cout << "Application Identifier : ["	<< this->emvptr->application_identifier << "] \n";
-	cout << "Application Usage Control : ["	<<	this->emvptr->application_usage_control << "] \n";
-	cout << "Terminal Application Version Number : ["	<< this->emvptr->terminal_application_version_number << "] \n";
-	cout << "Issuer Application Data : ["	<<	this->emvptr->issuer_application_data << "] \n";
-	cout << "Terminal Country Code : ["	<<	this->emvptr->terminal_country_code << "] \n";
-	cout << "Interface Device Serial Number : ["	<<	this->emvptr->interface_device_serial_number << "] \n";
-	cout << "Application Cryptogram : ["	<<	this->emvptr->application_crpytogram << "] \n";
-	cout << "Cryptogram Information Data : ["	<<	this->emvptr->cryptogram_information_data << "] \n";
-	cout << "Terminal Capability : ["	<<	this->emvptr->terminal_capability << "] \n";
-	cout << "Cardholder Verification Method Result : ["	<<	this->emvptr->cardholder_verfication_method_result << "] \n";
-	cout << "Terminal Type : ["	<<	this->emvptr->terminal_type << "] \n";
-	cout << "Application Transaction Counter : ["	<<	this->emvptr->application_transaction_counter << "] \n";
-	cout << "Unpredictable Number : ["	<<	this->emvptr->unpredictable_number << "] \n";
-	cout << "Transaction Sequence Counter : ["	<<	this->emvptr->transaction_sequence_counter << "] \n";
-	cout << "Transaction Category Code : ["	<<	this->emvptr->transaction_category_code << "] \n";
-	cout << "Issuer Script Result : ["	<<	this->emvptr->issuer_script_result << "] \n";
-	cout << "Card Product Identification : ["	<<	this->emvptr->card_product_identification << "] \n";
-	cout << "Issuer authorization Code - Electronic Cash : [" << this->emvptr->issuer_authorization_code << "] \n";
-	cout << "EMV DUMP END \n";
+	printDebug("EMV DUMP START \n");
+	printDebug("Issuer Script Template 1 : [%s] \n",			this->emvptr->issuer_script_template_1);
+	printDebug("Issuer Script Template 2 : [%s] \n", 			this->emvptr->issuer_script_template_2);
+	printDebug("Application Interchange Profile : [%s] \n",		this->emvptr->app_interchange_profile);
+	printDebug("Dedicated File Name : [%s] \n",					this->emvptr->dedicated_file_name);
+	printDebug("Issuer Authentication Data : [%s] \n",			this->emvptr->issuer_authentication_data);
+	printDebug("Terminal Verification Result : [%s] \n",		this->emvptr->terminal_verification_result);
+	printDebug("Transaction Date : [%s] \n",					this->emvptr->transaction_date); 
+	printDebug("Transaction Type : [%s] \n",					this->emvptr->transaction_type);
+	printDebug("Transaction Currency Code : [%s] \n",			this->emvptr->transaction_currency_code); 
+	printDebug("Amount Authorized : [%s] \n",					this->emvptr->amount_authorized);
+	printDebug("Amount Other : [%s] \n",						this->emvptr->amount_other);
+	printDebug("Application Identifier : [%s] \n",				this->emvptr->application_identifier );
+	printDebug("Application Usage Control : [%s] \n",			this->emvptr->application_usage_control );
+	printDebug("Terminal Application Version Number : [%s] \n",	this->emvptr->terminal_application_version_number );
+	printDebug("Issuer Application Data : [%s] \n",				this->emvptr->issuer_application_data);
+	printDebug("Terminal Country Code : [%s] \n",				this->emvptr->terminal_country_code );
+	printDebug("Interface Device Serial Number : [%s] \n",		this->emvptr->interface_device_serial_number );
+	printDebug("Application Cryptogram : [%s] \n",				this->emvptr->application_crpytogram );
+	printDebug("Cryptogram Information Data : [%s] \n",			this->emvptr->cryptogram_information_data);
+	printDebug("Terminal Capability : [%s] \n"					this->emvptr->terminal_capability );
+	printDebug("Cardholder Verification Method Result : [%s] \n",this->emvptr->cardholder_verfication_method_result );
+	printDebug("Terminal Type : [%s] \n",						this->emvptr->terminal_type );
+	printDebug("Application Transaction Counter : [%s] \n",		this->emvptr->application_transaction_counter);
+	printDebug("Unpredictable Number : [%s] \n",				this->emvptr->unpredictable_number );
+	printDebug("Transaction Sequence Counter : [%s] \n",		this->emvptr->transaction_sequence_counter );
+	printDebug("Transaction Category Code : [%s] \n",			this->emvptr->transaction_category_code );
+	printDebug("Issuer Script Result : [%s] \n",				this->emvptr->issuer_script_result );
+	printDebug("Card Product Identification : [%s] \n",			this->emvptr->card_product_identification );
+	printDebug("Issuer authorization Code - Electronic Cash : [%s] \n", this->emvptr->issuer_authorization_code);
+	printDebug("EMV DUMP END \n");
 	return 0;
 }
