@@ -101,7 +101,7 @@ int printDebug(char *printmsg)
 	time_t curr_time = time(0);
 	tm *local_time = localtime(&curr_time);
 	
-	sprintf("%02d:%02d:%02d %02d:%02d:%02d [   %s]: DEBUG: %s \n", 1 +local_time->tm_mon, local_time->tm_mday, 1970 + local_time->tm_year, 1 + local_time->tm_hour, 1 + local_time->tm_min, 1 + local_time->tm_sec, progname, printmsg);
+	sprintf("%02d:%02d:%04d %02d:%02d:%02d [   %s]: DEBUG: %s \n", 1 +local_time->tm_mon, local_time->tm_mday, 1970 + local_time->tm_year, 1 + local_time->tm_hour, 1 + local_time->tm_min, 1 + local_time->tm_sec, progname, printmsg);
 	fout << debug;
 	fout.close();
 	return (0);
@@ -119,7 +119,7 @@ int printWarn(char *printmsg)
 	time_t curr_time = time(0);
 	tm *local_time = localtime(&curr_time);
 	
-	sprintf("%02d:%02d:%02d %02d:%02d:%02d [   %s]: WARN: %s \n", 1 +local_time->tm_mon, local_time->tm_mday, 1970 + local_time->tm_year, 1 + local_time->tm_hour, 1 + local_time->tm_min, 1 + local_time->tm_sec, progname, printmsg);
+	sprintf("%02d:%02d:%04d %02d:%02d:%02d [   %s]: WARN: %s \n", 1 +local_time->tm_mon, local_time->tm_mday, 1970 + local_time->tm_year, 1 + local_time->tm_hour, 1 + local_time->tm_min, 1 + local_time->tm_sec, progname, printmsg);
 	fout << debug;
 	fout.close();
 	return (0);
@@ -137,7 +137,7 @@ int printFatal(char *printmsg)
 	time_t curr_time = time(0);
 	tm *local_time = localtime(&curr_time);
 	
-	sprintf("%02d:%02d:%02d %02d:%02d:%02d [   %s]: FATAL: %s \n", 1 +local_time->tm_mon, local_time->tm_mday, 1970 + local_time->tm_year, 1 + local_time->tm_hour, 1 + local_time->tm_min, 1 + local_time->tm_sec, progname, printmsg);
+	sprintf("%02d:%02d:%04d %02d:%02d:%02d [   %s]: FATAL: %s \n", 1 +local_time->tm_mon, local_time->tm_mday, 1970 + local_time->tm_year, 1 + local_time->tm_hour, 1 + local_time->tm_min, 1 + local_time->tm_sec, progname, printmsg);
 	fout << debug;
 	fout.close();
 	return (0);
@@ -155,7 +155,7 @@ int printError(char *printmsg)
 	time_t curr_time = time(0);
 	tm *local_time = localtime(&curr_time);
 	
-	sprintf("%02d:%02d:%02d %02d:%02d:%02d [   %s]: ERROR: %s \n", 1 +local_time->tm_mon, local_time->tm_mday, 1970 + local_time->tm_year, 1 + local_time->tm_hour, 1 + local_time->tm_min, 1 + local_time->tm_sec, progname, printmsg);
+	sprintf("%02d:%02d:%04d %02d:%02d:%02d [   %s]: ERROR: %s \n", 1 +local_time->tm_mon, local_time->tm_mday, 1970 + local_time->tm_year, 1 + local_time->tm_hour, 1 + local_time->tm_min, 1 + local_time->tm_sec, progname, printmsg);
 	fout << debug;
 	fout.close();
 	return (0);
