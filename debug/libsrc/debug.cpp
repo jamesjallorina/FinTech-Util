@@ -48,7 +48,7 @@ int app_name_init(char *app_name)
 		return (-1);
 	else 
 		strcpy(progname, app_name);
-	return 0;
+	return (0);
 }
 
 int debugOn(char *filename)
@@ -64,7 +64,7 @@ int debugOn(char *filename)
 		strcpy(FileName, filename);
 		isInit = true;
 	}
-	return 0;
+	return (0);
 }
 
 int printInfo(char *printmsg)
@@ -82,8 +82,8 @@ int printInfo(char *printmsg)
 	
 	sprintf("%02d:%02d:%04d %02d:%02d:%02d [   %s]: INFO: %s \n", 1 +local_time->tm_mon, local_time->tm_mday, 1970 + local_time->tm_year, 1 + local_time->tm_hour, 1 + local_time->tm_min, 1 + local_time->tm_sec, progname, printmsg);
 	fout << debug;
-	fout.cose();
-	return 0;
+	fout.close();
+	return (0);
 }
 
 	
@@ -103,8 +103,8 @@ int printDebug(char *printmsg)
 	
 	sprintf("%02d:%02d:%02d %02d:%02d:%02d [   %s]: DEBUG: %s \n", 1 +local_time->tm_mon, local_time->tm_mday, 1970 + local_time->tm_year, 1 + local_time->tm_hour, 1 + local_time->tm_min, 1 + local_time->tm_sec, progname, printmsg);
 	fout << debug;
-	fout.cose();
-	return 0;
+	fout.close();
+	return (0);
 }
 
 int printWarn(char *printmsg)
@@ -121,8 +121,8 @@ int printWarn(char *printmsg)
 	
 	sprintf("%02d:%02d:%02d %02d:%02d:%02d [   %s]: WARN: %s \n", 1 +local_time->tm_mon, local_time->tm_mday, 1970 + local_time->tm_year, 1 + local_time->tm_hour, 1 + local_time->tm_min, 1 + local_time->tm_sec, progname, printmsg);
 	fout << debug;
-	fout.cose();
-	return 0;
+	fout.close();
+	return (0);
 }
 
 int printFatal(char *printmsg)
@@ -139,8 +139,8 @@ int printFatal(char *printmsg)
 	
 	sprintf("%02d:%02d:%02d %02d:%02d:%02d [   %s]: FATAL: %s \n", 1 +local_time->tm_mon, local_time->tm_mday, 1970 + local_time->tm_year, 1 + local_time->tm_hour, 1 + local_time->tm_min, 1 + local_time->tm_sec, progname, printmsg);
 	fout << debug;
-	fout.cose();
-	return 0;
+	fout.close();
+	return (0);
 }
 
 int printError(char *printmsg)
@@ -157,8 +157,8 @@ int printError(char *printmsg)
 	
 	sprintf("%02d:%02d:%02d %02d:%02d:%02d [   %s]: ERROR: %s \n", 1 +local_time->tm_mon, local_time->tm_mday, 1970 + local_time->tm_year, 1 + local_time->tm_hour, 1 + local_time->tm_min, 1 + local_time->tm_sec, progname, printmsg);
 	fout << debug;
-	fout.cose();
-	return 0;
+	fout.close();
+	return (0);
 }
 
 
