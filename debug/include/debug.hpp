@@ -33,11 +33,11 @@ Abstract:
 extern "C"{
 extern int app_name_init(char *app_name);
 extern int debugOn(char *filename);
-extern int printInfo(char *printmsg);
-extern int printDebug(char *printmsg);
-extern int printWarn(char *printmsg);
-extern int printFatal(char *printmsg);
-extern int printError(char *printmsg);
+extern int printInfo(const char *format, ...);
+extern int printDebug(const char *format, ...);
+extern int printWarn(const char *format, ...);
+extern int printFatal(const char *format, ...);
+extern int printError(const char *format, ...);
 }
 
 #endif 	//_DEBUG_H_
