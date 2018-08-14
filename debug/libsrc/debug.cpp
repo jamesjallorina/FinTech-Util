@@ -35,12 +35,12 @@ Abstract:
 #include "debug.hpp"
 #include "macros.hpp"
 
-using namespace std;
-
 #define APP_NAME_LEN 50
 
 static const char progname[APP_NAME_LEN + 1];
 static const char const *FileName;
+static bool isInitAppName = false;
+static bool isInitFileName = false;
 
 /****************************************************************************************************
 *	Author		: James Marjun Jallorina												          	*
@@ -51,7 +51,6 @@ static const char const *FileName;
 *****************************************************************************************************/
 int app_name_init(char *app_name)
 {
-	static bool isInitAppName = false;
 	if(progname[0]) 
 		return (-1);
 	else 
@@ -71,16 +70,15 @@ int app_name_init(char *app_name)
 *****************************************************************************************************/
 int debugOn(char *filename)
 {
-	static bool isInit = false;
-	if(isInit) 
+	if(isInitFileName) 
 	{
-		cout << "Filename already initialized\n";
+		std::cout << "filename already initialized\n";
 		return (-1);
 	}
 	else
 	{
 		strcpy(FileName, filename);
-		isInit = true;
+		isInitFileName = true;
 	}
 	return (0);
 }
@@ -89,7 +87,7 @@ int debugOn(char *filename)
 *	Author		: James Marjun Jallorina												          	*
 *	Date		: 08-14-2018                                                                      	*
 *	Parameter	: char * app_name /application name                                               	*
-*	Description	: This function prints debug message with level info												  	*
+*	Description	: This function prints debug message with level info								*
 *****************************************************************************************************/
 int printInfo(const char *format, ...)
 {	
@@ -100,8 +98,16 @@ int printInfo(const char *format, ...)
 	ofstream fout(FileName);
 	fout.open(FileName, ios::out|ios::app);
 
-	if(isFileOk(fout) == false) return (-1);
-	
+	if(!isInitializedDebug(isInitAppName, isInitFileName))
+	{
+		std::cout << "initalize with app_name_init() and debugOn()\n";
+		return (-1);
+	}
+	if(!isFileOk(fout)) 
+	{
+		std::cout << "opening filename failed\n";
+		return (-1);
+	}
 	memset(debug, '\0', sizeof(debug));
 	memset(printmsg, '\0', sizeof(debug));
 	
@@ -132,8 +138,16 @@ int printDebug(char *printmsg, const char *format, ...)
 	ofstream fout(FileName);
 	fout.open(FileName, ios::out|ios::app);
 
-	if(isFileOk(fout) == false) return (-1);
-	
+	if(!isInitializedDebug(isInitAppName, isInitFileName))
+	{
+		std::cout << "initalize with app_name_init() and debugOn()\n";
+		return (-1);
+	}
+	if(!isFileOk(fout)) 
+	{
+		std::cout << "opening filename failed\n";
+		return (-1);
+	}
 	memset(debug, '\0', sizeof(debug));
 	memset(printmsg, '\0', sizeof(debug));
 	
@@ -164,8 +178,16 @@ int printWarn(char *printmsg, const char *format, ...)
 	ofstream fout(FileName);
 	fout.open(FileName, ios::out|ios::app);
 
-	if(isFileOk(fout) == false) return (-1);
-	
+	if(!isInitializedDebug(isInitAppName, isInitFileName))
+	{
+		std::cout << "initalize with app_name_init() and debugOn()\n";
+		return (-1);
+	}
+	if(!isFileOk(fout)) 
+	{
+		std::cout << "opening filename failed\n";
+		return (-1);
+	}
 	memset(debug, '\0', sizeof(debug));
 	memset(printmsg, '\0', sizeof(debug));
 	
@@ -196,8 +218,16 @@ int printFatal(char *printmsg, const char *format, ...)
 	ofstream fout(FileName);
 	fout.open(FileName, ios::out|ios::app);
 
-	if(isFileOk(fout) == false) return (-1);
-	
+	if(!isInitializedDebug(isInitAppName, isInitFileName))
+	{
+		std::cout << "initalize with app_name_init() and debugOn()\n";
+		return (-1);
+	}
+	if(!isFileOk(fout)) 
+	{
+		std::cout << "opening filename failed\n";
+		return (-1);
+	}
 	memset(debug, '\0', sizeof(debug));
 	memset(printmsg, '\0', sizeof(debug));
 	
@@ -228,8 +258,16 @@ int printError(char *printmsg, const char *format, ...)
 	ofstream fout(FileName);
 	fout.open(FileName, ios::out|ios::app);
 
-	if(isFileOk(fout) == false) return (-1);
-	
+	if(!isInitializedDebug(isInitAppName, isInitFileName))
+	{
+		std::cout << "initalize with app_name_init() and debugOn()\n";
+		return (-1);
+	}
+	if(!isFileOk(fout)) 
+	{
+		std::cout << "opening filename failed\n";
+		return (-1);
+	}
 	memset(debug, '\0', sizeof(debug));
 	memset(printmsg, '\0', sizeof(debug));
 	
