@@ -80,13 +80,15 @@ int printInfo(char *printmsg)
 	tm *local_time = localtime(&curr_time);
 	
 	
-	sprintf("%02d:%02d:%02d %02d:%02d:%02d [   %s]: INFO: %s \n", 1 +local_time->tm_mon, local_time->tm_mday, 1970 + local_time->tm_year, 1 + local_time->tm_hour, 1 + local_time->tm_min, 1 + local_time->tm_sec, progname, printmsg);
+	sprintf("%02d:%02d:%04d %02d:%02d:%02d [   %s]: INFO: %s \n", 1 +local_time->tm_mon, local_time->tm_mday, 1970 + local_time->tm_year, 1 + local_time->tm_hour, 1 + local_time->tm_min, 1 + local_time->tm_sec, progname, printmsg);
 	fout << debug;
 	fout.cose();
 	return 0;
 }
 
-
+	
+	
+	
 int printDebug(char *printmsg)
 {
 	char debug[DBG_LEN +1];
@@ -122,6 +124,7 @@ int printWarn(char *printmsg)
 	fout.cose();
 	return 0;
 }
+
 int printFatal(char *printmsg)
 {
 	char debug[DBG_LEN +1];
@@ -139,6 +142,7 @@ int printFatal(char *printmsg)
 	fout.cose();
 	return 0;
 }
+
 int printError(char *printmsg)
 {
 	char debug[DBG_LEN +1];

@@ -31,5 +31,8 @@ Abstract:
 #define _MACRO_H_
 
 #define init_char(str) memset(str,'\0',sizeof(str)
+#define isFileOk(file)	if(!file.is_open()) { cout << "failed to open file!\n"; return (-1) } \
+		else return (0)
+	
 
 #endif	//_MACRO_H_
