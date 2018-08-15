@@ -56,6 +56,8 @@ int app_name_init(char *app_name)
 		return (-1);
 	else 
 	{
+		if( strlen(app_name) > APP_NAME_LEN) 
+			return (-1);
 		strcpy(progname, app_name);
 		isInitAppName = true;
 	}
@@ -77,7 +79,8 @@ int debugOn(char *filename)
 		return (-1);
 	}
 	else
-	{
+	{	if( strlen(filename) > FILE_NAME_LEN) 
+			return (-1);
 		strcpy(FileName, filename);
 		isInitFileName = true;
 	}
