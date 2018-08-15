@@ -36,9 +36,10 @@ Abstract:
 #include "macros.hpp"
 
 #define APP_NAME_LEN 50
+#define FILE_NAME_LEN 100
 
 static const char progname[APP_NAME_LEN + 1];
-static const char const *FileName;
+static const char FileName[FILE_NAME_LEN + 1];
 static bool isInitAppName = false;
 static bool isInitFileName = false;
 
@@ -51,7 +52,7 @@ static bool isInitFileName = false;
 *****************************************************************************************************/
 int app_name_init(char *app_name)
 {
-	if(progname[0]) 
+	if(isInitAppName) 
 		return (-1);
 	else 
 	{
