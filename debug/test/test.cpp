@@ -1,5 +1,6 @@
-#includ <stdio.h>
+#include <stdio.h>
 #include "debug.hpp"
+
 
 int main(int argc, char **argv)
 {
