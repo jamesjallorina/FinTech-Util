@@ -119,7 +119,7 @@ int printInfo(const char *format, ...)
 	tm *local_time = localtime(&curr_time);
 	
 	va_start(arg, format);
-	sprintf(printmsg, format);
+	vsprintf(printmsg, format, arg);
 	va_end(arg);
 	sprintf(debug, "%02d:%02d:%04d %02d:%02d:%02d [   %s]: INFO: %s \n", 1 +local_time->tm_mon, local_time->tm_mday, 1970 + local_time->tm_year, 1 + local_time->tm_hour, 1 + local_time->tm_min, 1 + local_time->tm_sec, progname, printmsg);
 	fout << debug;
@@ -159,7 +159,7 @@ int printDebug(char *printmsg, const char *format, ...)
 	tm *local_time = localtime(&curr_time);
 	
 	va_start(arg, format);
-	sprintf(printmsg, format);
+	vsprintf(printmsg, format, arg);
 	va_end(arg);
 	sprintf(debug, "%02d:%02d:%04d %02d:%02d:%02d [   %s]: DEBUG: %s \n", 1 +local_time->tm_mon, local_time->tm_mday, 1970 + local_time->tm_year, 1 + local_time->tm_hour, 1 + local_time->tm_min, 1 + local_time->tm_sec, progname, printmsg);
 	fout << debug;
@@ -199,7 +199,7 @@ int printWarn(char *printmsg, const char *format, ...)
 	tm *local_time = localtime(&curr_time);
 	
 	va_start(arg, format);
-	sprintf(printmsg, format);
+	vsprintf(printmsg, format, arg);
 	va_end(arg);
 	sprintf(debug, "%02d:%02d:%04d %02d:%02d:%02d [   %s]: WARN: %s \n", 1 +local_time->tm_mon, local_time->tm_mday, 1970 + local_time->tm_year, 1 + local_time->tm_hour, 1 + local_time->tm_min, 1 + local_time->tm_sec, progname, printmsg);
 	fout << debug;
@@ -239,7 +239,7 @@ int printFatal(char *printmsg, const char *format, ...)
 	tm *local_time = localtime(&curr_time);
 	
 	va_start(arg, format);
-	sprintf(printmsg, format);
+	vsprintf(printmsg, format, arg);
 	va_end(arg);
 	sprintf(debug, "%02d:%02d:%04d %02d:%02d:%02d [   %s]: FATAL: %s \n", 1 +local_time->tm_mon, local_time->tm_mday, 1970 + local_time->tm_year, 1 + local_time->tm_hour, 1 + local_time->tm_min, 1 + local_time->tm_sec, progname, printmsg);
 	fout << debug;
@@ -279,7 +279,7 @@ int printError(char *printmsg, const char *format, ...)
 	tm *local_time = localtime(&curr_time);
 	
 	va_start(arg, format);
-	sprintf(printmsg, format);
+	vsprintf(printmsg, format, arg);
 	va_end(arg);
 	sprintf(debug, "%02d:%02d:%04d %02d:%02d:%02d [   %s]: ERROR: %s \n", 1 +local_time->tm_mon, local_time->tm_mday, 1970 + local_time->tm_year, 1 + local_time->tm_hour, 1 + local_time->tm_min, 1 + local_time->tm_sec, progname, printmsg);
 	fout << debug;
