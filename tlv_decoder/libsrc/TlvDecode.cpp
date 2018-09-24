@@ -36,7 +36,7 @@ Abstract:
 #include "macro.hpp"
 #include "emvdef.hpp"
 #iinclude "TlvHelper.hpp"
-#include "debug/include/debug.hpp"
+#include "debug.hpp"
 
 using namespace std;
 
