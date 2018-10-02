@@ -31,7 +31,7 @@ Abstract:
 #define _MACRO_H_
 
 #define init_char(str) (memset(str,'\0',sizeof(str)))
-#define isFileOk(file)	(!file.is_open() ? 1 : 0)
+#define isFileOk(file)	(file.is_open() ? 1 : 0)
 #define isInitializedDebug(a,b)	((a && b) ? 1 : 0)
 	
 
