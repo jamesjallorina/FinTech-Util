@@ -57,7 +57,7 @@ TlvDecode::~TlvDecode()
 	}
 } //end of destructor
 
-void TlvDecode::DecodeChipDataTag(string sTagData)
+void TlvDecode::DecodeChipDataTag(const char* EmvTags)
 {
  	char acChipData[DBG_LEN];
  	init_char(acChipData); 
@@ -68,7 +68,10 @@ void TlvDecode::DecodeChipDataTag(string sTagData)
 	char acTagData[256];
  	init_char(acTagData);
 	
- 	sprintf(acChipData,'%s',sTagData); //load the value to character array
+	if(EmvTags[0] == '\0')
+		return;
+	
+ 	sprintf(acChipData,'%s',EmvTags); //load the value to character array
  
  	int iDataLen = 0, iChipDataLen = 0, iTagIndex = 0, int iCounter = 0, iDataTagLen = 0;
 	long int  iTag = 0;
@@ -206,6 +209,16 @@ void TlvDecode::DecodeChipDataTag(string sTagData)
 		}
  		//sprintf(acWholeDataTag,"%s%s",acWholeDataTag,acTagData); // may use depends on system requirement
 	}
+	return;
+}
+void TlvDecode::DecodeChipDataTag(const string sEmvTags)
+{
+	const char *emvTags = sEmvTags.c_str();
+	
+	if(emvTags[0] != '\0')
+		DecodeChipDataTag(emvTags);
+	
+	return;
 }
 
 int TlvDecode::emvdump(struct emvbuf *emvptr)

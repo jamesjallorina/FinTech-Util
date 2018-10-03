@@ -36,7 +36,8 @@ class TlvDecode
 	public:
 		TlvDecode();
 		virtual ~TlvDecode();
-		virtual void DecodeChipDataTag(string sTagData);
+		virtual void DecodeChipDataTag(const char* EmvTags);
+		virtual void DecodeChipDataTag(const string sEmvTags);
 		virtual int emvdump(emvbuf *emvptr);
 };
 
