@@ -3,35 +3,35 @@
 #include "tlvdecoder.h"
 
 #if0
-usingemv::emv_tag_71;
-usingemv::emv_tag_72;
-usingemv::emv_tag_82;
-usingemv::emv_tag_84;
-usingemv::emv_tag_91;
-usingemv::emv_tag_95;
-usingemv::emv_tag_9A;
-usingemv::emv_tag_9C;
-usingemv::emv_tag_5F2A;
-usingemv::emv_tag_9F02;
-usingemv::emv_tag_9F03;
-usingemv::emv_tag_9F06;
-usingemv::emv_tag_9F07;
-usingemv::emv_tag_9F09;
-usingemv::emv_tag_9F10;
-usingemv::emv_tag_9F1A;
-usingemv::emv_tag_9F1E;
-usingemv::emv_tag_9F26; 
-usingemv::emv_tag_9F27;
-usingemv::emv_tag_9F33;
-usingemv::emv_tag_9F34;
-usingemv::emv_tag_9F35;
-usingemv::emv_tag_9F36;
-usingemv::emv_tag_9F37;
-usingemv::emv_tag_9F41;
-usingemv::emv_tag_9F53;
-usingemv::emv_tag_9F5B;
-usingemv::emv_tag_9F63;
-usingemv::emv_tag_9F74;
+using emv::emv_tag_71;
+using emv::emv_tag_72;
+using emv::emv_tag_82;
+using emv::emv_tag_84;
+using emv::emv_tag_91;
+using emv::emv_tag_95;
+using emv::emv_tag_9A;
+using emv::emv_tag_9C;
+using emv::emv_tag_5F2A;
+using emv::emv_tag_9F02;
+using emv::emv_tag_9F03;
+using emv::emv_tag_9F06;
+using emv::emv_tag_9F07;
+using emv::emv_tag_9F09;
+using emv::emv_tag_9F10;
+using emv::emv_tag_9F1A;
+using emv::emv_tag_9F1E;
+using emv::emv_tag_9F26; 
+using emv::emv_tag_9F27;
+using emv::emv_tag_9F33;
+using emv::emv_tag_9F34;
+using emv::emv_tag_9F35;
+using emv::emv_tag_9F36;
+using emv::emv_tag_9F37;
+using emv::emv_tag_9F41;
+using emv::emv_tag_9F53;
+using emv::emv_tag_9F5B;
+using emv::emv_tag_9F63;
+using emv::emv_tag_9F74;
 #endif
 
 /*
@@ -39,7 +39,7 @@ usingemv::emv_tag_9F74;
         @tags   : charstringtags
         @len    : lengthoftags
 */
-unsignedchar *emvparser::convert_to_hex(constunsignedchar *tags, size_t *len)
+unsigned char *emvparser::convert_to_hex(const unsignedchar *tags, size_t *len)
 {
         //char *p = &tags[0];
         size_tc = 0;
@@ -64,7 +64,7 @@ unsignedchar *emvparser::convert_to_hex(constunsignedchar *tags, size_t *len)
 
 emvparser::emvparser()
 {
-        
+
         issuer_script_template_1 = "";
         issuer_script_template_2 = "";
         app_interchange_profile = "";
@@ -96,7 +96,7 @@ emvparser::emvparser()
         issuer_authorization_code = "";
 }
 
-emvparser::emvparser(constemvparser &e)
+emvparser::emvparser(const emvparser &e)
 {
         hval = e.hval = ;
         sval = e.sval;
@@ -172,7 +172,7 @@ voidemvparser::decode(constchar *emvtags)
         * CheckiftheTagDatahasan 'F' Value
         * elsenonewewilltreatitas2bytesTagData
         **/
-        if(tag[1] == 'F')
+        if(tag[1] == 'F' || tag[1] == 'f')      //incorporate lowercase too
 		iDataLen = 4;
         else
 		iDataLen = 2;
@@ -326,7 +326,7 @@ voidemvdump(emvparsere)
 }
 
 
-intmain(intargc, char **argv)
+int main(intargc, char **argv)
 {
         emvparser_parser;
 
