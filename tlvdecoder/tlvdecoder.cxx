@@ -34,7 +34,11 @@ using emv::emv_tag_9F63;
 using emv::emv_tag_9F74;
 #endif
 
-emvparser::emvparser()
+/*
+        function        : string_init
+        description     : initialize private string members
+*/
+void emvparser::string_init()
 {
         issuer_script_template_1 = "";
         issuer_script_template_2 = "";
@@ -65,16 +69,6 @@ emvparser::emvparser()
         issuer_script_result = "";
         card_product_identification = "";
         issuer_authorization_code = "";
-}
-
-
-/*
-        function: emvparser constructor
-        @hcontainer: pass an hcontainer object
-        @scontainer: pass an scontainer object
-*/
-emvparser::emvparser(hcontainer h, scontainer s)
-{
 
 }
 
@@ -124,15 +118,15 @@ emvparser::emvparser(const emvparser &e)
         @tags   : charstringtags
         @len    : lengthoftags
 */
-unsigned char *emvparser::convert_to_hex(const unsignedchar *tags, size_t *len)
+unsigned char *emvparser::convert_to_hex(const unsigned char *tags, size_t *len)
 {
         //char *p = &tags[0];
-        size_tc = 0;
-        size_temvlen = *len;
-        staticunsignedcharp[255+1];
-        unsignedcharfb;
-        unsignedcharsb;
-        for(inti = 0; i < emvlen; )
+        size_t c = 0;
+        size_t emvlen = *len;
+        static unsigned char p[255+1];
+        unsigned char fb;
+        unsigned char sb;
+        for(int i = 0; i < emvlen; )
         {
                 fb = tags[i] < 58 ? (tags[i++] - 48) << 4 : (tags[i++] - 55) << 4;
 
@@ -153,18 +147,18 @@ unsigned char *emvparser::convert_to_hex(const unsignedchar *tags, size_t *len)
         function: decodeemvtags
         @emvtags   : charstringtags
 */
-void emvparser::decode(constchar *emvtags)
+void emvparser::decode(const char *emvtags)
 {
 
-        std::string_tag = "";
+        std::string _tag = "";
 
-        charchipdata[DBG_LEN];
+        char chipdata[DBG_LEN];
         init_char(chipdata);
-        chartag[4 + 1];
+        char tag[4 + 1];
         init_char(tag);
-        chartaglen[2 + 1];
+        char taglen[2 + 1];
         init_char(taglen);
-        chartagdata[255 + 1];
+        char tagdata[255 + 1];
         init_char(tagdata);
 
         if(emvtags[0] == '\0')
@@ -172,8 +166,8 @@ void emvparser::decode(constchar *emvtags)
 
         sprintf(chipdata,"%s",emvtags); //loadthevaluetocharacterarray
 
-        intiDataLen = 0, iChipDataLen = 0, itagIndex = 0, iDataTagLen = 0;     //intiCounter = 0
-        longintitag = 0;
+        int iDataLen = 0, iChipDataLen = 0, itagIndex = 0, iDataTagLen = 0;     //intiCounter = 0
+        long int itag = 0;
 
         iChipDataLen = strlen(chipdata);
 
@@ -307,7 +301,7 @@ void emvparser::decode(constchar *emvtags)
         return;
 }
 
-voidemvdump(emvparsere)
+void emvdump(emvparser e)
 {
         printf("EMVDUMPSTART \n");
         printf("%-50s:[%s] \n", "IssuerScriptTemplate1", e.issuer_script_template_1.c_str());
@@ -344,9 +338,9 @@ voidemvdump(emvparsere)
 }
 
 
-int main(intargc, char **argv)
+int main(int argc, char **argv)
 {
-        emvparser_parser;
+        emvparser _parser;
 
         if(argc < 2){
                 std::cout << "usage: " << std::endl;

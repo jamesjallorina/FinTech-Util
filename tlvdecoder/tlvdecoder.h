@@ -76,22 +76,24 @@ typedef struct string_container
 	//copy ctor
 	string_container(string_container &s)
 	{
-		memcpy((unsigned char *)stags, (unsigned char *)s.stags, s.len)
+		memcpy((unsigned char *)stags, (unsigned char *)s.stags, s.len);
 		len = s.len;
 	}
-		unsigned char stags[255+255+1];
+		unsigned char stags[255+255+1];		//this container 255 x 2 since this will be literal string hex tags
 		size_t len;
 } scontainer;
 
 class emvparser 
 {
 public:
-
-
-		emvparser();
-		emvparser(hcontainer h, scontainer s);
+		emvparser() {
+			string_init();
+		}
+		emvparser(hcontainer &h, scontainer &s) : hval(h), sval(s) {
+			 string_init();
+		}
 		emvparser(const emvparser &e);
-		~emvparser();
+		~emvparser() { }
 
         void decode(const char *emvtags);
         void decode(const std::string emvtags) 
@@ -102,13 +104,14 @@ public:
         unsigned char *convert_to_string(const unsigned char *tags, size_t *len);
 
         friend void emvdump(emvparser e);
-        friend const string_container *getraw(emvparser e)
+        
+        const scontainer getraw()
         {
-        	return &sval;
+        	return sval;
         }
-        friend const string_container *gethex(emvparser e)
+        const hcontainer gethex()
         {
-        	return &hval;
+        	return 	hval;
     	}
 
 private:
@@ -146,6 +149,9 @@ private:
 	std::string issuer_script_result;
 	std::string card_product_identification;
 	std::string issuer_authorization_code;
+
+	void string_init();
+	void string_copy(const emvparser &e);
 };
 
 #endif //TLV_DECODER_H
