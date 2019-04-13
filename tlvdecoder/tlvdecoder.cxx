@@ -64,7 +64,7 @@ unsignedchar *emvparser::convert_to_hex(constunsignedchar *tags, size_t *len)
 
 emvparser::emvparser()
 {
-
+        
         issuer_script_template_1 = "";
         issuer_script_template_2 = "";
         app_interchange_profile = "";
@@ -193,91 +193,91 @@ voidemvparser::decode(constchar *emvtags)
         _tag = tagdata;
         switch(itag)
         {
-        caseemv_tag_71:
+        case emv_tag_71:
                 issuer_script_template_1 = _tag;
         break;
-        caseemv_tag_72:
+        case emv_tag_72:
                 issuer_script_template_2 = _tag;
         break;
-        caseemv_tag_82:
+        case emv_tag_82:
                 app_interchange_profile = _tag;
         break;
-        caseemv_tag_84:
+        case emv_tag_84:
                 dedicated_file_name = _tag;
         break;
-        caseemv_tag_91:
+        case emv_tag_91:
                 issuer_authentication_data = _tag;
         break;
-        caseemv_tag_95:
+        case emv_tag_95:
                 terminal_verification_result = _tag;
         break;
-        caseemv_tag_9A:
+        case emv_tag_9A:
                 transaction_date = _tag;
         break;
-        caseemv_tag_9C:
+        case emv_tag_9C:
                 transaction_type = _tag;
         break;
-        caseemv_tag_5F2A:
+        case emv_tag_5F2A:
                 transaction_currency_code = _tag;
         break;
-        caseemv_tag_9F02:
+        case emv_tag_9F02:
                 amount_authorized = _tag;
         break;
-        caseemv_tag_9F03:
+        case emv_tag_9F03:
                 amount_other = _tag;
         break;
-        caseemv_tag_9F06:
+        case emv_tag_9F06:
                 application_identifier = _tag;
         break;
-        caseemv_tag_9F07:
+        case emv_tag_9F07:
                 application_usage_control = _tag;
         break;
-        caseemv_tag_9F09:
+        case emv_tag_9F09:
                 terminal_application_version_number = _tag;
         break;
-        caseemv_tag_9F10:
+        case emv_tag_9F10:
                 issuer_application_data = _tag;
         break;
-        caseemv_tag_9F1A:
+        case emv_tag_9F1A:
                 terminal_country_code = _tag;
         break;
-        caseemv_tag_9F1E:
+        case emv_tag_9F1E:
                 interface_device_serial_number = _tag;
         break;
-        caseemv_tag_9F26:
+        case emv_tag_9F26:
                 application_crpytogram = _tag;
         break;
-        caseemv_tag_9F27:
+        case emv_tag_9F27:
                 cryptogram_information_data = _tag;
         break;
-        caseemv_tag_9F33:
+        case emv_tag_9F33:
                 terminal_capability = _tag;
         break;
-        caseemv_tag_9F34:
+        case emv_tag_9F34:
                 cardholder_verfication_method_result = _tag;
         break;
-        caseemv_tag_9F35:
+        case emv_tag_9F35:
                 terminal_type = _tag;
         break;
-        caseemv_tag_9F36:
+        case emv_tag_9F36:
                 application_transaction_counter = _tag;
         break;
-        caseemv_tag_9F37:
+        case emv_tag_9F37:
                 unpredictable_number = _tag;
         break;
-        caseemv_tag_9F41:
+        case emv_tag_9F41:
                 transaction_sequence_counter = _tag;
         break;
-        caseemv_tag_9F53:
+        case emv_tag_9F53:
                 transaction_category_code = _tag;
         break;
-        caseemv_tag_9F5B:
+        case emv_tag_9F5B:
                 issuer_script_result = _tag;
         break;
-        caseemv_tag_9F63:
+        case emv_tag_9F63:
                 card_product_identification = _tag;
         break;
-        caseemv_tag_9F74:
+        case emv_tag_9F74:
                 issuer_authorization_code = _tag;
         break;
         default:
