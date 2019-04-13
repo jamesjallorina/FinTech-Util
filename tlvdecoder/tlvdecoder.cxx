@@ -2,7 +2,7 @@
 //CreatebyJamesJallorina
 #include "tlvdecoder.h"
 
-#if0
+#if 0
 using emv::emv_tag_71;
 using emv::emv_tag_72;
 using emv::emv_tag_82;
@@ -33,34 +33,6 @@ using emv::emv_tag_9F5B;
 using emv::emv_tag_9F63;
 using emv::emv_tag_9F74;
 #endif
-
-/*
-        function: convertcharstringstohex
-        @tags   : charstringtags
-        @len    : lengthoftags
-*/
-unsigned char *emvparser::convert_to_hex(const unsignedchar *tags, size_t *len)
-{
-        //char *p = &tags[0];
-        size_tc = 0;
-        size_temvlen = *len;
-        staticunsignedcharp[255+1];
-        unsignedcharfb;
-        unsignedcharsb;
-        for(inti = 0; i < emvlen; )
-        {
-                fb = tags[i] < 58 ? (tags[i++] - 48) << 4 : (tags[i++] - 55) << 4;
-
-                sb = tags[i] < 58 ? sb = tags[i++] - 48 : tags[i++] - 55;         
-                //printf("fb : %.2x \n", fb);
-                //printf("sb : %.2x \n", sb);
-                p[c] = fb | sb;
-                //printf("p[c] : %.2x \n", p[c]);
-                c++;
-        }
-        *len = c;
-        return &p[0];
-}
 
 emvparser::emvparser()
 {
@@ -95,6 +67,21 @@ emvparser::emvparser()
         issuer_authorization_code = "";
 }
 
+
+/*
+        function: emvparser constructor
+        @hcontainer: pass an hcontainer object
+        @scontainer: pass an scontainer object
+*/
+emvparser::emvparser(hcontainer h, scontainer s)
+{
+
+}
+
+/*
+        function: emvparser constructor
+        @emvparser: pass an emvparser object
+*/
 emvparser::emvparser(const emvparser &e)
 {
         hval = e.hval;  //added copy ctor 
@@ -130,11 +117,43 @@ emvparser::emvparser(const emvparser &e)
         issuer_authorization_code = e.issuer_authorization_code;
 }
 
+
+
+/*
+        function: convertcharstringstohex
+        @tags   : charstringtags
+        @len    : lengthoftags
+*/
+unsigned char *emvparser::convert_to_hex(const unsignedchar *tags, size_t *len)
+{
+        //char *p = &tags[0];
+        size_tc = 0;
+        size_temvlen = *len;
+        staticunsignedcharp[255+1];
+        unsignedcharfb;
+        unsignedcharsb;
+        for(inti = 0; i < emvlen; )
+        {
+                fb = tags[i] < 58 ? (tags[i++] - 48) << 4 : (tags[i++] - 55) << 4;
+
+                sb = tags[i] < 58 ? sb = tags[i++] - 48 : tags[i++] - 55;         
+                //printf("fb : %.2x \n", fb);
+                //printf("sb : %.2x \n", sb);
+                p[c] = fb | sb;
+                //printf("p[c] : %.2x \n", p[c]);
+                c++;
+        }
+        *len = c;
+        return &p[0];
+}
+
+
+
 /*
         function: decodeemvtags
         @emvtags   : charstringtags
 */
-voidemvparser::decode(constchar *emvtags)
+void emvparser::decode(constchar *emvtags)
 {
 
         std::string_tag = "";

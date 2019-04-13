@@ -45,46 +45,51 @@ const long int emv_tag_9F5B = 40795; //tag 9F5B
 const long int emv_tag_9F63 = 40803; //tag 9F63
 const long int emv_tag_9F74 = 40820; //tag 9F74
 
+
+typedef struct hex_container
+{
+	hex_container() 
+	{ 
+		memset((unsigned char *)htags, 0, sizeof(htags));
+		len = 0;
+	}
+	hex_container(hex_container &h)
+	{
+		memcpy((unsigned char *)htags, (unsigned char *)h.htags, h.len);
+		len = h.len;
+	}
+	~hex_container() {}
+		
+	unsigned char htags[255+1];
+	size_t len;
+
+} hcontainer;
+		
+typedef struct string_container
+{
+	//ctor
+	string_container() 
+	{ 
+		memset((unsigned char *)stags, 0, sizeof(stags));
+		len = 0;
+	}
+	//copy ctor
+	string_container(string_container &s)
+	{
+		memcpy((unsigned char *)stags, (unsigned char *)s.stags, s.len)
+		len = s.len;
+	}
+		unsigned char stags[255+255+1];
+		size_t len;
+} scontainer;
+
 class emvparser 
 {
 public:
-		typedef struct hex_container
-		{
-			hex_container() 
-			{ 
-				memset((unsigned char *)htags, 0, sizeof(htags));
-				len = 0;
-			}
-			hex_container(hex_container &h)
-			{
-				memcpy((unsigned char *)htags, (unsigned char *)h.htags, h.len);
-				len = h.len;
-			}
-			~hex_container() {}
-			unsigned char htags[255+1];
-			size_t len;
-		} hcontainer;
-		
-		typedef struct string_container
-		{
-			//ctor
-			string_container() 
-			{ 
-				memset((unsigned char *)stags, 0, sizeof(stags));
-				len = 0;
-			}
-			//copy ctor
-			string_container(string_container &s)
-			{
-				memcpy((unsigned char *)stags, (unsigned char *)s.stags, s.len)
-				len = s.len;
-			}
-			unsigned char stags[255+255+1];
-			size_t len;
-		} scontainer;
+
 
 		emvparser();
-		emvparser(hcontainer h, )
+		emvparser(hcontainer h, scontainer s);
 		emvparser(const emvparser &e);
 		~emvparser();
 
