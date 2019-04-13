@@ -114,7 +114,7 @@ emvparser::emvparser(const emvparser &e)
 
 
 /*
-        function: convertcharstringstohex
+        function: convert char strings to hex
         @tags   : charstringtags
         @len    : lengthoftags
 */
@@ -140,6 +140,46 @@ unsigned char *emvparser::convert_to_hex(const unsigned char *tags, size_t *len)
         *len = c;
         return &p[0];
 }
+
+/*
+        function: convert hex to string
+        @tags   : charstringtags
+        @len    : lengthoftags
+*/
+unsigned char *emvparser::convert_to_string(const unsigned char *tags, size_t *hlen, size_t *slen)
+{
+        size_t c = 0;
+        size_t emvlen = *hlen;
+        unsigned char buf;
+        static unsigned char p[255+255+1];
+        
+        memset((unsigned char *)p, 0, sizeof(p));
+        
+//      printf("passed emvlen: %zu \n", emvlen);
+//      printf("passed hextags: \n");
+//      for(int j = 0; j < emvlen; j++)
+//      {
+//              printf("0x%.2x ", tags[j]);
+//      }
+        for(int i = 0; i < emvlen; i++)
+        {
+                printf("converting tag: %.2x \n", tags[i]);
+                buf = ((tags[i] & 0xF0) >> 4) < 10 ? (((tags[i] & 0xF0) >> 4) + 48) : (((tags[i] & 0xF0) >> 4) + 55);
+//              printf("%c ", buf);
+                p[c++] = buf; 
+                //sprintf(p[i], "%x", buf[c]);
+                buf = (tags[i] & 0x0F) < 10 ? (tags[i] & 0x0F) + 48 : (tags[i] & 0x0F) + 55;
+                //sprintf(p[i], "%x", buf[c]);
+//              printf("%c ", buf);
+                p[c++] = buf;
+//              printf("\n");
+//              printf("i: %d \n", i);
+        }
+        *slen = c;
+        
+        return &p[0];
+}
+
 
 
 

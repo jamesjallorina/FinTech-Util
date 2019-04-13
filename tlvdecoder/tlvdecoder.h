@@ -45,7 +45,10 @@ const long int emv_tag_9F5B = 40795; //tag 9F5B
 const long int emv_tag_9F63 = 40803; //tag 9F63
 const long int emv_tag_9F74 = 40820; //tag 9F74
 
-
+/*
+	class name 	: hex container
+	description : hex emv values is stored in this container 
+*/
 typedef struct hex_container
 {
 	hex_container() 
@@ -64,7 +67,12 @@ typedef struct hex_container
 	size_t len;
 
 } hcontainer;
+
 		
+/*
+	class name 	: string container
+	description : string emv values is stored in this container 
+*/
 typedef struct string_container
 {
 	//ctor
@@ -82,6 +90,8 @@ typedef struct string_container
 		unsigned char stags[255+255+1];		//this container 255 x 2 since this will be literal string hex tags
 		size_t len;
 } scontainer;
+
+
 
 class emvparser 
 {
@@ -101,7 +111,7 @@ public:
         	return decode(emvtags.c_str()); 
         }
         unsigned char *convert_to_hex(const unsigned char *tags, size_t *len);
-        unsigned char *convert_to_string(const unsigned char *tags, size_t *len);
+        unsigned char *convert_to_string(const unsigned char *tags, size_t *hlen, size_t *slen);
 
         friend void emvdump(emvparser e);
         
