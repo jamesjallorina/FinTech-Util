@@ -62,7 +62,18 @@ typedef struct hex_container
 		len = h.len;
 	}
 	~hex_container() {}
-		
+
+	void store(const unsigned char *h, const size_t len)
+	{
+		if(len > 255)
+		{
+			std::cout << "invalid length" << std::endl;
+		}
+		memcpy((unsigned char *)htags, (unsigned char *)h, len);
+		this->len = len;
+	}
+
+private:
 	unsigned char htags[255+1];
 	size_t len;
 
@@ -87,6 +98,21 @@ typedef struct string_container
 		memcpy((unsigned char *)stags, (unsigned char *)s.stags, s.len);
 		len = s.len;
 	}
+	~string_container() {}
+
+	void store(const unsigned char *s, const size_t len)
+	{
+		if(len > 510)
+		{
+			std::cout << "invalid length" << std::endl;
+			return;
+		}
+
+		memcpy((unsigned char *)stags, (unsigned char *)s, len);
+		this->len = len;
+	}
+
+private:
 		unsigned char stags[255+255+1];		//this container 255 x 2 since this will be literal string hex tags
 		size_t len;
 } scontainer;
@@ -112,8 +138,14 @@ public:
         }
         unsigned char *convert_to_hex(const unsigned char *tags, size_t *len);
         unsigned char *convert_to_string(const unsigned char *tags, size_t *hlen, size_t *slen);
-
-        friend void emvdump(emvparser e);
+        void store_hex(const unsigned char *h, const size_t len)
+        {
+        	hval.store(h, len);
+        }
+        void store_string(const unsigned char *s, const size_t len)
+        {
+        	sval.store(s, len);
+        }
         
         const scontainer getraw()
         {
@@ -123,9 +155,9 @@ public:
         {
         	return 	hval;
     	}
+    	friend void emvdump(emvparser e);
 
 private:
-
 
 	hcontainer hval;
 	scontainer sval;

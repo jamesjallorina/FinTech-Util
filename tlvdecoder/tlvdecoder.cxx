@@ -184,14 +184,11 @@ unsigned char *emvparser::convert_to_string(const unsigned char *tags, size_t *h
 
 
 /*
-        function: decodeemvtags
+        function   : decod eemvtags
         @emvtags   : charstringtags
 */
 void emvparser::decode(const char *emvtags)
 {
-
-        std::string _tag = "";
-
         char chipdata[DBG_LEN];
         init_char(chipdata);
         char tag[4 + 1];
@@ -200,7 +197,7 @@ void emvparser::decode(const char *emvtags)
         init_char(taglen);
         char tagdata[255 + 1];
         init_char(tagdata);
-
+        std::string _tag = "";
         if(emvtags[0] == '\0')
                 return;
 
@@ -221,8 +218,8 @@ void emvparser::decode(const char *emvtags)
 	memcpy(tag,chipdata+itagIndex,2);
 
         /**
-        * CheckiftheTagDatahasan 'F' Value
-        * elsenonewewilltreatitas2bytesTagData
+        * Check if the Tag Data hasan 'F' or 'f' Value
+        * else none we will treat it as 2bytes Tag Data
         **/
         if(tag[1] == 'F' || tag[1] == 'f')      //incorporate lowercase too
 		iDataLen = 4;
@@ -231,15 +228,15 @@ void emvparser::decode(const char *emvtags)
 
 	memcpy(tag, chipdata+itagIndex, iDataLen); 
 
-        itagIndex += iDataLen; //movetheindexdependsonthevalueofDataTag
+        itagIndex += iDataLen; //move the index depends on the value of DataTag
         memcpy(taglen, chipdata + itagIndex, 2);
-	itagIndex += 2; // Wewilladd2bytesforlengthandmovetheindex
+	itagIndex += 2; // We will add 2bytes for length and move the index
         iDataTagLen = strtol(taglen,NULL,16);
 	iDataTagLen *= 2;	//multiplyby2
 
-        //nowwewillcopytheTagValueandwewillmoveagaindependsonthelength
+        //now we will copy the Tag Value and we will move again depends on the length
         memcpy(tagdata,chipdata+itagIndex, iDataTagLen);
-	itagIndex += iDataTagLen;	//movetheindex
+	itagIndex += iDataTagLen;	//move the index
 	itag = strtol(tag, NULL, 16);
 	printf("TAG: [%s] TAGLEN: [%d] TAGVALUE: [%s] \n", tag, iDataTagLen/2, tagdata);
         _tag = tagdata;
