@@ -64,7 +64,6 @@ unsigned char *emvparser::convert_to_hex(const unsignedchar *tags, size_t *len)
 
 emvparser::emvparser()
 {
-
         issuer_script_template_1 = "";
         issuer_script_template_2 = "";
         app_interchange_profile = "";
@@ -98,37 +97,37 @@ emvparser::emvparser()
 
 emvparser::emvparser(const emvparser &e)
 {
-        hval = e.hval = ;
-        sval = e.sval;
-        issuer_script_template_1;
-        issuer_script_template_2;
-        app_interchange_profile;
-        dedicated_file_name;
-        issuer_authentication_data;
-        terminal_verification_result;
-        transaction_date;
-        transaction_type;
-        transaction_currency_code;
-        amount_authorized;
-        amount_other;
-        application_identifier;
-        application_usage_control;
-        terminal_application_version_number;
-        issuer_application_data;
-        terminal_country_code;
-        interface_device_serial_number;
-        application_crpytogram;
-        cryptogram_information_data;
-        terminal_capability;
-        cardholder_verfication_method_result;
-        terminal_type;
-        application_transaction_counter;
-        unpredictable_number;
-        transaction_sequence_counter;
-        transaction_category_code;
-        issuer_script_result;
-        card_product_identification;
-        issuer_authorization_code;
+        hval = e.hval;  //added copy ctor 
+        sval = e.sval;  //added copy ctor
+        issuer_script_template_1 = e.issuer_script_template_1;
+        issuer_script_template_2 = e.issuer_script_template_2;
+        app_interchange_profile = e.app_interchange_profile;
+        dedicated_file_name = e.dedicated_file_name;
+        issuer_authentication_data = e.issuer_authentication_data;
+        terminal_verification_result = e.terminal_verification_result;
+        transaction_date = e.transaction_date;
+        transaction_type = e.transaction_type;
+        transaction_currency_code = e.transaction_currency_code;
+        amount_authorized = e.amount_authorized;
+        amount_other = e.amount_other;
+        application_identifier = e.application_identifier;
+        application_usage_control = e.application_usage_control;
+        terminal_application_version_number = e.terminal_application_version_number;
+        issuer_application_data = e.issuer_application_data;
+        terminal_country_code = e.terminal_country_code;
+        interface_device_serial_number = e.interface_device_serial_number;
+        application_crpytogram = e.application_crpytogram;
+        cryptogram_information_data = e.cryptogram_information_data;
+        terminal_capability = e.terminal_capability;
+        cardholder_verfication_method_result = e.cardholder_verfication_method_result;
+        terminal_type = e.terminal_type;
+        application_transaction_counter = e.application_transaction_counter;
+        unpredictable_number = e.unpredictable_number;
+        transaction_sequence_counter = e.transaction_sequence_counter;
+        transaction_category_code = e.transaction_category_code;
+        issuer_script_result = e.issuer_script_result;
+        card_product_identification = e.card_product_identification;
+        issuer_authorization_code = e.issuer_authorization_code;
 }
 
 /*
