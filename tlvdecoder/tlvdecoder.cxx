@@ -303,7 +303,7 @@ void emvparser::decode(const char *emvtags)
 
 void emvdump(emvparser e)
 {
-        printf("EMVDUMPSTART \n");
+        printf("EMV DUMP START \n");
         printf("%-50s:[%s] \n", "IssuerScriptTemplate1", e.issuer_script_template_1.c_str());
         printf("%-50s:[%s] \n", "IssuerScriptTemplate2", e.issuer_script_template_2.c_str());
         printf("%-50s:[%s] \n", "ApplicationInterchangeProfile", e.app_interchange_profile.c_str());
@@ -333,7 +333,7 @@ void emvdump(emvparser e)
         printf("%-50s:[%s] \n", "IssuerScriptResult", e.issuer_script_result.c_str());
         printf("%-50s:[%s] \n", "CardProductIdentification", e.card_product_identification.c_str());
         printf("%-50s:[%s] \n", "IssuerauthorizationCode - ElectronicCash", e.issuer_authorization_code.c_str());
-        printf("EMVDUMPEND \n");
+        printf("EMV DUMP END \n");
         return;
 }
 
