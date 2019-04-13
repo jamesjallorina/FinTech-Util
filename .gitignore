@@ -1,0 +1,5 @@
+#ignore these files to get committed 
+*.txt
+*.bak
+*.swp
+build

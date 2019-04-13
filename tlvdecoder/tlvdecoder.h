@@ -1,5 +1,9 @@
+//coded for C++98 standard
+//Create by James Jallorina
+
 #ifndef TLV_DECODER_H
 #define TLV_DECODER_H
+
 
 #include <iostream>
 #include <stdlib.h>
@@ -8,9 +12,8 @@
 #include <stdio.h>
 
 #define DBG_LEN 2048
-#define init_char(str) (memset(str,'\0',sizeof(str)))
 
-namespace emv {
+#define init_char(str) (memset(str,'\0',sizeof(str)))
 
 const long int emv_tag_71 = 113; //tag 71
 const long int emv_tag_72 = 114; //tag 72
@@ -45,10 +48,19 @@ const long int emv_tag_9F74 = 40820; //tag 9F74
 class emvparser 
 {
 public:
-        void DecodeChipDataTag(const string emvtags);
+		emvparser() { memset(emvtags, 0, sizeof(emvtags));}
+		~emvparser(){}
+        void decode(const char *emvtags);
+        void decode(const std::string emvtags) 
+        { 
+        	return decode(emvtags.c_str()); 
+        }
+        unsigned char *convert_to_hex(const unsigned char *tags, size_t *len);
+
+        friend void emvdump(emvparser e);
 
 private:
-	const char emvtags[255+1];
+	char hextags[255+1];
 	std::string issuer_script_template_1;
 	std::string issuer_script_template_2;
 	std::string app_interchange_profile;
@@ -79,7 +91,5 @@ private:
 	std::string card_product_identification;
 	std::string issuer_authorization_code;
 };
-
-} //namespace emv
 
 #endif //TLV_DECODER_H
