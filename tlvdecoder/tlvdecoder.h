@@ -48,19 +48,70 @@ const long int emv_tag_9F74 = 40820; //tag 9F74
 class emvparser 
 {
 public:
-		emvparser() { memset(emvtags, 0, sizeof(emvtags));}
-		~emvparser(){}
+		typedef struct hex_container
+		{
+			hex_container() 
+			{ 
+				memset((unsigned char *)htags, 0, sizeof(htags));
+				len = 0;
+			}
+			hex_container(hex_container &h)
+			{
+				memcpy((unsigned char *)htags, (unsigned char *)h.htags, h.len);
+				len = h.len;
+			}
+			~hex_container() {}
+			unsigned char htags[255+1];
+			size_t len;
+		} hcontainer;
+		
+		typedef struct string_container
+		{
+			//ctor
+			string_container() 
+			{ 
+				memset((unsigned char *)stags, 0, sizeof(stags));
+				len = 0;
+			}
+			//copy ctor
+			string_container(string_container &s)
+			{
+				memcpy((unsigned char *)stags, (unsigned char *)s.stags, s.len)
+				len = s.len;
+			}
+			unsigned char stags[255+255+1];
+			size_t len;
+		} scontainer;
+
+		emvparser();
+		emvparser(hcontainer h, )
+		emvparser(const emvparser &e);
+		~emvparser();
+
         void decode(const char *emvtags);
         void decode(const std::string emvtags) 
         { 
         	return decode(emvtags.c_str()); 
         }
         unsigned char *convert_to_hex(const unsigned char *tags, size_t *len);
+        unsigned char *convert_to_string(const unsigned char *tags, size_t *len);
 
         friend void emvdump(emvparser e);
+        friend const string_container *getraw(emvparser e)
+        {
+        	return &sval;
+        }
+        friend const string_container *gethex(emvparser e)
+        {
+        	return &hval;
+    	}
 
 private:
-	char hextags[255+1];
+
+
+	hcontainer hval;
+	scontainer sval;
+	
 	std::string issuer_script_template_1;
 	std::string issuer_script_template_2;
 	std::string app_interchange_profile;
