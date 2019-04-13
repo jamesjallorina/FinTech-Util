@@ -73,7 +73,7 @@ void emvparser::string_init()
 }
 
 /*
-        function: emvparser constructor
+        function: emvparser copy constructor
         @emvparser: pass an emvparser object
 */
 emvparser::emvparser(const emvparser &e)
@@ -163,7 +163,7 @@ unsigned char *emvparser::convert_to_string(const unsigned char *tags, size_t *h
 //      }
         for(int i = 0; i < emvlen; i++)
         {
-                printf("converting tag: %.2x \n", tags[i]);
+ //             printf("converting tag: %.2x \n", tags[i]);
                 buf = ((tags[i] & 0xF0) >> 4) < 10 ? (((tags[i] & 0xF0) >> 4) + 48) : (((tags[i] & 0xF0) >> 4) + 55);
 //              printf("%c ", buf);
                 p[c++] = buf; 
