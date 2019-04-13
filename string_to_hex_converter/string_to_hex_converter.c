@@ -2,7 +2,29 @@
 #include <stdlib.h>
 #include <string.h>
 
+unsigned char *convert_to_hex(const unsigned char *tags, size_t *len)
+{
+        //char *p = &tags[0];
+        size_t c = 0;
+        size_t emvlen = *len;
+        static unsigned char p[255+1];
+        unsigned char fb;
+        unsigned char sb;
+        for(int i = 0; i < emvlen; )
+        {
+                fb = tags[i] < 58 ? (tags[i++] - 48) << 4 : (tags[i++] - 55) << 4;
 
+                sb = tags[i] < 58 ? sb = tags[i++] - 48 : tags[i++] - 55;         
+                //printf("fb : %.2x \n", fb);
+                //printf("sb : %.2x \n", sb);
+                p[c] = fb | sb;
+                //printf("p[c] : %.2x \n", p[c]);
+                c++;
+        }
+        *len = c;
+        return &p[0];
+}
+#if 0
 unsigned char *convert_to_hex(const unsigned char *tags, size_t *len)
 {
 	//char *p = &tags[0];
@@ -34,6 +56,8 @@ unsigned char *convert_to_hex(const unsigned char *tags, size_t *len)
 	*len = c;
 	return &p[0];
 }
+#endif 
+
 
 int main(int argc, char **argv)
 {
