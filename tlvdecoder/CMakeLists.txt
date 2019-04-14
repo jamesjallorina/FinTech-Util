@@ -1,5 +1,5 @@
 # To compile this with cmake 
-# 1. Go to path=<elevator_logic>
+# 1. Go to path=<tlvdecoder>
 # 2. Create a build directory outside the source directory
 # 3. Following are the steps to compile
 #	a. mkdir build
