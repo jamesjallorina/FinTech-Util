@@ -136,23 +136,31 @@ public:
         { 
         	return decode(emvtags.c_str()); 
         }
-        unsigned char *convert_to_hex(const unsigned char *tags, size_t *len);
-        unsigned char *convert_to_string(const unsigned char *tags, size_t *hlen, size_t *slen);
+
         void store_hex(const unsigned char *h, const size_t len)
         {
-        	hval.store(h, len);
+        	unsigned char *p = 0;
+        	size_t hlen = len;
+
+        	p = convert_to_hex(h, &hlen);
+        	hval.store(p, hlen);
         }
         void store_string(const unsigned char *s, const size_t len)
         {
-        	sval.store(s, len);
+        	unsigned char *p = 0;
+        	size_t _len = len;
+        	size_t slen = 0;
+        	p = convert_to_string(s, &_len, &slen);
+        	sval.store(p, slen);
         }
         
-        const scontainer getraw()
-        {
+    	unsigned char *convert_to_hex(const unsigned char *tags, size_t *len);
+        unsigned char *convert_to_string(const unsigned char *tags, size_t *hlen, size_t *slen);
+    	
+        const scontainer getraw(){
         	return sval;
         }
-        const hcontainer gethex()
-        {
+        const hcontainer gethex(){
         	return 	hval;
     	}
     	friend void emvdump(emvparser e);
