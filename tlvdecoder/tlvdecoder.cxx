@@ -330,6 +330,7 @@ void emvparser::decode(const char *emvtags)
                 issuer_authorization_code = _tag;
         break;
         default:
+        	std::cout << "emv tag not defined: " << tag << std::endl;
         break;
         }
         //sprintf(acWholeDataTag,"%s%s",acWholeDataTag,tagdata); // mayusedependsonsystemrequirement
