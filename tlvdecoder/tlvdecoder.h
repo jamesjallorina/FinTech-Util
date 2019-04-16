@@ -157,10 +157,10 @@ public:
     	unsigned char *convert_to_hex(const unsigned char *tags, size_t *len);
         unsigned char *convert_to_string(const unsigned char *tags, size_t *hlen, size_t *slen);
     	
-        const scontainer getraw(){
+        const scontainer &getraw(){
         	return sval;
         }
-        const hcontainer gethex(){
+        const hcontainer &gethex(){
         	return 	hval;
     	}
     	friend void emvdump(emvparser e);
