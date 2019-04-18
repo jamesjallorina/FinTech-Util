@@ -9,10 +9,12 @@ public:
 	dump(const dump &d);
 	~dump();
 
-	void outdump()
+	void outdump(const char *dump);
+	void outdump();
 
 private:
 	char *data;
+	size_t size;
 }
 
 
