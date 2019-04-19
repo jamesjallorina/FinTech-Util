@@ -1,6 +1,7 @@
 #include "filehandler.h"
 
 #include <iostream>
+#include <ifstream>
 #include <string>
 #include <string.h>
 #include <stdlib.h>
@@ -21,14 +22,22 @@ filehandler::filehandler(const filehandler &file)
 filehandler::~filehandler() {}
 
 
-void filehandler::open(const char *file)
+void filehandler::readtofile(const char *file)
 {
+	std::string line = "";
+	std::string templateName = "";
+	std::string templateVal = "";
+
 	filename = file;
+	filestream.open(filename);
 
-}
+	if(filestream.is_open())
+	{
+		std::cout << "file is okay to read" << std::endl;
+	}
 
-void filehandler::load()
-{
+	while( getline(filestream, ))
+
 
 
 }

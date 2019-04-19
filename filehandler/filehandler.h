@@ -11,13 +11,12 @@ public:
 	filehandler(const filehandler &file);
 	~filehandler();
 
-	void open();
-	void load();
+	void readtofile();
 	void show();
 
 private:
 	std::string filename;
-	std::ifstream 
+	std::ifstream filestream;
 	vector<PAIR> tcontainer;
 }
 
