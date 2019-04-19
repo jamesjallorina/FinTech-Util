@@ -14,7 +14,7 @@ unsigned char *convert_to_hex(const unsigned char *tags, size_t *len)
         {
                 fb = tags[i] < 58 ? (tags[i++] - 48) << 4 : (tags[i++] - 55) << 4;
 
-                sb = tags[i] < 58 ? sb = tags[i++] - 48 : tags[i++] - 55;         
+                sb = tags[i] < 58 ? tags[i++] - 48 : tags[i++] - 55;         
                 //printf("fb : %.2x \n", fb);
                 //printf("sb : %.2x \n", sb);
                 p[c] = fb | sb;
