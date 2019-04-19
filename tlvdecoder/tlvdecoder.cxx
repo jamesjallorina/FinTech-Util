@@ -124,16 +124,16 @@ unsigned char *emvparser::convert_to_hex(const unsigned char *tags, size_t *len)
         size_t c = 0;
         size_t emvlen = *len;
         static unsigned char p[255+1];
-        unsigned char fb;
-        unsigned char sb;
+        unsigned char msb;
+        unsigned char lsb;
         for(int i = 0; i < emvlen; )
         {
-                fb = tags[i] < 58 ? (tags[i++] - 48) << 4 : (tags[i++] - 55) << 4;
+                msb = tags[i] < 58 ? (tags[i++] - 48) << 4 : (tags[i++] - 55) << 4;
 
-                sb = tags[i] < 58 ? sb = tags[i++] - 48 : tags[i++] - 55;         
-                //printf("fb : %.2x \n", fb);
-                //printf("sb : %.2x \n", sb);
-                p[c] = fb | sb;
+                lsb = tags[i] < 58 ? tags[i++] - 48 : tags[i++] - 55;         
+                //printf("mlsb : %.2x \n", msb);
+                //printf("lsb : %.2x \n", lsb);
+                p[c] = msb | lsb;
                 //printf("p[c] : %.2x \n", p[c]);
                 c++;
         }
