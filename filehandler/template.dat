@@ -1,12 +1,9 @@
 shcextbindb start
-{
-	lowbin = 5210690000000000
-	highbin = 5210699999999999
-	cardproduct = BDOPHMC
-}
-{
-	lowbin = 4895040000000000
-	highbin = 4895049999999999
-	cardproduct = BDOPHVISA
-}
+MC lowbin 5210690000000000
+MC highbin 5210699999999999
+MC cardproduct BDOPHMC
+	
+VISA lowbin 4895040000000000
+VISA highbin 4895049999999999
+VISA cardproduct BDOPHVISA
 shcextbindb end
