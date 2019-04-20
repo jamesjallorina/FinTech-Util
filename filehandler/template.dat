@@ -7,3 +7,9 @@ VISA lowbin 4895040000000000
 VISA highbin 4895049999999999
 VISA cardproduct BDOPHVISA
 shcextbindb end
+
+shcbin start
+MC userbinid 521069
+
+VISA userbinid 489504
+shcbin end

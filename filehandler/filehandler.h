@@ -4,11 +4,14 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include <set>
+#include <map>
 
 #include <string>
 #include <string.h>
 #include <stdlib.h>
+
+//for sleep function call
+#include <unistd.h>
 
 
 typedef std::pair<std::string, std::string> PAIR;
@@ -20,7 +23,7 @@ public:
 	filehandler(const filehandler &file);
 	~filehandler();
 
-	void readtofile(std::string tableName, std::string find);
+	void parse(std::string tableName, std::string find);
 	void show();
 
 private:
@@ -29,7 +32,7 @@ private:
 	std::string filename;
 	std::ifstream filestream;
 	//std::vector<PAIR> tcontainer;
-	std::multiset<std::string, PAIR> mset;
+	std::multimap<std::string, PAIR> mmap;
 };
 
 #endif //FILE_HANDLER_H
