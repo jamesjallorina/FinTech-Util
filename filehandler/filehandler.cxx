@@ -27,7 +27,9 @@ filehandler::~filehandler() {}
 void filehandler::parse(std::string tableName/*, std::string find*/)
 {
 	size_t found = 0;
+	size_t pos = 0;
 	bool isStart = false;
+	std::string token = "";
 	std::string line = "";
 	std::string templateMember = "";
 	std::string templateName = "";
@@ -82,38 +84,41 @@ void filehandler::parse(std::string tableName/*, std::string find*/)
 			//{
 				//std::cout << "found key at : " << found << std::endl;
 
-				size_t pos = 0;
-				std::string token = "";
-				while((pos = line.find(" ")) != std::string::npos)
-				{
-					std::cout << "current line : " << line << std::endl;
-					//std::cout << "ctr : " << ctr << std::endl;
-					token = line.substr(0, pos);
-					line.erase(0, pos + 1);
-					std::cout << "first token : " << token << std::endl;
-					templateMember = token;
+			
 
-					if((pos = line.find(" ")) != std::string::npos)
-						token = line.substr(0, pos);
+			std::cout << "current line : " << line << std::endl;
+				//std::cout << "ctr : " << ctr << std::endl;
+			pos = line.find(" ");
+
+				if(pos != std::string::npos)
+					token = line.substr(0, pos);
+
+					
+			line.erase(0, pos + 1);
+			std::cout << "first token : " << token << std::endl;
+			templateMember = token;
+
+				if((pos = line.find(" ")) != std::string::npos)
+					token = line.substr(0, pos);
 					
 					//line.erase(0, pos + 1);	//erase + 1 since it is only space
-					std::cout << "second token : " << token << std::endl;
+			std::cout << "second token : " << token << std::endl;
 					//	if(ctr == 2)
 					//		templateName = token;
 					//	else if(ctr == 3)
 					//		templateVal = token;
-					templateName = token;
-					token = line.erase(0, pos + 1);	//erase + 1 since it is only space
-					std::cout << "third token : " << token << std::endl;
-					templateVal = token;
+			templateName = token;
+			token = line.erase(0, pos + 1);	//erase + 1 since it is only space
+			std::cout << "third token : " << token << std::endl;
+				templateVal = token;
 #if defined(SLEEP)
 					sleep(1);
 #endif
-				}
-				std::cout << "templateMember : " << templateMember << std::endl;
-				std::cout << "templateName : " << templateName << std::endl;
-				std::cout << "templateVal : " << templateVal << std::endl;
-				mmap.insert(std::make_pair(templateMember + templateName, templateVal));
+				
+			std::cout << "templateMember : " << templateMember << std::endl;
+			std::cout << "templateName : " << templateName << std::endl;
+			std::cout << "templateVal : " << templateVal << std::endl;
+			mmap.insert(std::make_pair(templateMember + templateName, templateVal));
 				//nv.name = templateName;
 				//nv.value = templateVal;
 				//mmap.insert(templateMember, std::pair<std::string, std::string>(templateName, templateVal));
