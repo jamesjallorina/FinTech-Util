@@ -55,6 +55,7 @@ public:
 	~filehandler();
 
 	void parse(std::string tableName/*, std::string find*/);
+	bool find(const std::string &key, std::string &value);
 	void show();
 
 private:

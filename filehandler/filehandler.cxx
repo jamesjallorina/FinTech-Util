@@ -1,7 +1,7 @@
 #include "filehandler.h"
 
 
-#define SLEEP
+//#define SLEEP
 #define COMMENT '#'
 
 #if 0
@@ -136,6 +136,32 @@ void filehandler::parse(std::string tableName/*, std::string find*/)
 	filestream.close();
 }
 
+
+bool filehandler::find(const std::string &key, std::string &value)
+{
+	std::multimap<std::string, std::string>::const_iterator it;
+
+	for(it = mmap.begin(); it != mmap.end(); ++it)
+	{
+		if(it->first == key)
+		{
+			value = it->second;
+			return true;
+		}
+	}
+	return false;
+}
+
+void filehandler::show()
+{
+	std::multimap<std::string, std::string>::const_iterator it;
+
+	for(it = mmap.begin(); it != mmap.end(); ++it)
+		std::cout << it->first << " "  << it->second << std::endl;
+
+	return;
+}
+
 bool filehandler::isAlpha(const std::string &input)
 {
 	std::string::const_iterator it;
@@ -164,24 +190,45 @@ bool filehandler::isComment(const std::string &input)
 	return false;
 }
 
-void filehandler::show()
-{
-	std::multimap<std::string, std::string>::const_iterator it;
 
-	for(it = mmap.begin(); it != mmap.end(); ++it)
-		std::cout << it->first << " "  << it->second << std::endl;
-
-	return;
-}
 
 
 
 int main(int argc, char **argv)
 {
+	std::string value = "";
 	filehandler p("/home/skye/repository/jamesjallorina/FinTech-Util/filehandler/template.dat");
 	//p.parse("shcextbindb", "MC");
 	p.parse("shcextbindb");
 	p.show();
+
+	std::cout << "test find key" << std::endl;
+
+	//test find key
+	if( p.find("MClowbin", value))
+		std::cout << "found MClowbin : " << value << std::endl;
+	else
+		std::cout << " can't find MClowbin" << std::endl;
+
+	if( p.find("MChighbin", value))
+		std::cout << "found MChighbin : " << value << std::endl;
+	else
+		std::cout << "can't find MChighbin" << std::endl;
+
+	if( p.find("MCcardproduct", value))
+		std::cout << "found MCcardproduct : " << value << std::endl;
+	else
+		std::cout << "can't find MCcardproduct" << std::endl;
+
+	std::cout << "test cannot find key" << std::endl;
+
+	//test if cannot find key
+	if( p.find("randomkey", value))
+		std::cout << "found randomkey : " << value << std::endl;
+	else
+		std::cout << "can't find randomkey" << std::endl;
+
+
 
 	return 0;
 }
