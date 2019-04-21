@@ -2,6 +2,7 @@
 
 
 #define SLEEP
+#define COMMENT '#'
 
 #if 0
 filehandler::filehandler()
@@ -23,7 +24,7 @@ filehandler::filehandler(const filehandler &file)
 filehandler::~filehandler() {}
 
 
-void filehandler::parse(std::string tableName, std::string find)
+void filehandler::parse(std::string tableName/*, std::string find*/)
 {
 	size_t found = 0;
 	bool isStart = false;
@@ -33,7 +34,7 @@ void filehandler::parse(std::string tableName, std::string find)
 
 
 	std::cout << "table name : " << tableName << std::endl;
-	std::cout << "find : " << find << std::endl;
+	//std::cout << "find : " << find << std::endl;
 
 	filestream.open(filename);
 
@@ -43,8 +44,15 @@ void filehandler::parse(std::string tableName, std::string find)
 
 		while( getline(filestream, line))
 		{
-			//file handling should start with table name and start
+			//check line 
+			std::cout << "line : " << line << std::endl;
+			if(!isAlpha(line) || isComment(line))
+			{
+				std::cout << "is a comment or not an alphanumeric and space" << std::endl;
+				continue;
+			}
 
+			//file handling should start with table name and start
 			/*
 			*	search for table name and start hint
 			*/
@@ -66,22 +74,22 @@ void filehandler::parse(std::string tableName, std::string find)
 				break;
 			}
 
-			std::cout << "line : " << line << std::endl;
-			std::cout << "finding : " << find << " inside the template" << std::endl;
-			found = line.find(find);
-			if(found != std::string::npos)
-			{
-				std::cout << "found key at : " << found << std::endl;
-				//size_t ctr = 0;
+
+			//std::cout << "finding : " << find << " inside the template" << std::endl;
+			//found = line.find(find);
+			//if(found != std::string::npos)
+			//{
+				//std::cout << "found key at : " << found << std::endl;
+				size_t ctr = 0;
 				size_t pos = 0;
 				std::string token = "";
 				while((pos = line.find(" ")) != std::string::npos)
 				{
 					std::cout << "current line : " << line << std::endl;
 					//std::cout << "ctr : " << ctr << std::endl;
-					//ctr++;
+					ctr++;
 					token = line.substr(0, pos);
-					if(token == find)
+					if(ctr == 1)
 					{
 						std::cout << "skip MC value" << std::endl;
 						line.erase(0, pos + 1);	//erase + 1 since it is only space
@@ -95,7 +103,7 @@ void filehandler::parse(std::string tableName, std::string find)
 					//	else if(ctr == 3)
 					//		templateVal = token;
 						templateName = token;
-						token = line.erase(0, pos + 1);
+						token = line.erase(0, pos + 1);	//erase + 1 since it is only space
 						templateVal = token;
 					}
 #if defined(SLEEP)
@@ -104,7 +112,7 @@ void filehandler::parse(std::string tableName, std::string find)
 				}
 				std::cout << "templateName : " << templateName << std::endl;
 				std::cout << "templateVal : " << templateVal << std::endl;
-			}
+			//}
 #if defined(SLEEP)
 			sleep(1);
 #endif
@@ -114,6 +122,30 @@ void filehandler::parse(std::string tableName, std::string find)
 	{
 		std::cout << "failed to open file" << std::endl;
 	}
+}
+
+bool filehandler::isAlpha(const std::string &input)
+{
+	std::string::const_iterator it;
+
+	for(it = input.begin(); it != input.end(); ++it)
+	{
+		std::cout << "it : " << *it << std::endl;
+		if(!isalpha(*it) && !isdigit(*it) && !isspace(*it))
+		{
+			std::cout << "not an alphanumeric and space" << std::endl;
+			return false;
+		}
+	}
+	return true;
+}
+
+bool filehandler::isComment(const std::string &input)
+{
+	std::string::const_iterator it;
+	for(it = input.begin(); it != input.end(); ++it)
+		if( *it == COMMENT)
+			return true;
 }
 
 void filehandler::show()
@@ -126,7 +158,8 @@ void filehandler::show()
 int main(int argc, char **argv)
 {
 	filehandler p("/home/skye/repository/jamesjallorina/FinTech-Util/filehandler/template.dat");
-	p.parse("shcextbindb", "MC");
+	//p.parse("shcextbindb", "MC");
+	p.parse("shcextbindb");
 
 	return 0;
 }

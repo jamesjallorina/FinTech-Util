@@ -9,6 +9,7 @@
 #include <string>
 #include <string.h>
 #include <stdlib.h>
+#include <cctype>
 
 //for sleep function call
 #include <unistd.h>
@@ -23,7 +24,7 @@ public:
 	filehandler(const filehandler &file);
 	~filehandler();
 
-	void parse(std::string tableName, std::string find);
+	void parse(std::string tableName/*, std::string find*/);
 	void show();
 
 private:
@@ -33,6 +34,9 @@ private:
 	std::ifstream filestream;
 	//std::vector<PAIR> tcontainer;
 	std::multimap<std::string, PAIR> mmap;
+
+	bool isAlpha(const std::string &input);
+	bool isComment(const std::string &input);
 };
 
 #endif //FILE_HANDLER_H
