@@ -144,8 +144,12 @@ bool filehandler::isComment(const std::string &input)
 {
 	std::string::const_iterator it;
 	for(it = input.begin(); it != input.end(); ++it)
+	{
 		if( *it == COMMENT)
 			return true;
+	}
+	
+	return false;
 }
 
 void filehandler::show()
