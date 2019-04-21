@@ -14,8 +14,38 @@
 //for sleep function call
 #include <unistd.h>
 
+#if 0
+struct shcextbindb{
+	std::string member;
+	std::string name;
+	std::string value;
+};
 
-typedef std::pair<std::string, std::string> PAIR;
+template <class T>
+class data{
+public:
+	const std::string &getMember(){
+		return _data.member;
+	}
+
+	const std::string &getName(){
+		return _data.name;
+	}
+
+	const std::string &getValue(){
+		return _data.value;
+	}
+
+	const std::string &get_Value(){
+		return _data._value;
+	}
+
+private:
+	T _data;
+};
+#endif
+
+//typedef std::pair<std::string, std::string> PAIR;
 
 class filehandler
 {
@@ -33,7 +63,10 @@ private:
 	std::string filename;
 	std::ifstream filestream;
 	//std::vector<PAIR> tcontainer;
-	std::multimap<std::string, PAIR> mmap;
+	//std::multimap<std::string, name_value> mmap;
+	//std::multimap<std::string, std::pair<std::string, std::string>> mmap;
+	//std::vector<data<shcextbindb>> container;
+	std::multimap<std::string, std::string> mmap;
 
 	bool isAlpha(const std::string &input);
 	bool isComment(const std::string &input);

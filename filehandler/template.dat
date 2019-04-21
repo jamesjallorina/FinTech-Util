@@ -6,17 +6,16 @@
 # 				  step 2. [MEMBER NAME example MC, BNC, VISA] [column name of the table] [value]
 #				  step 3. [table name] [end]
 #				  
-#				  To introduce a new member name you should separate a next line with indicator [/] as follows
+#				  To introduce a new member name or new line you should separate a new line with indicator [/] 
 #				  then followed  by step 2. 
 #				  After you defined all the contents, you should end it with step 3.
 # Example		: shcbin start
-#				  MC userbinid 111111
+#				  MC_userbinid 111111
 #				  /
-#				  VISA userbind 222222
+#				  VISA_userbind 222222
 #				  shcbin end
 ######################################################################################################################
 shcextbindb start
-
 MC lowbin 5210690000000000
 MC highbin 5210699999999999
 MC cardproduct BDOPHMC
@@ -24,9 +23,8 @@ MC cardproduct BDOPHMC
 VISA lowbin 4895040000000000
 VISA highbin 4895049999999999
 VISA cardproduct BDOPHVISA
-
 shcextbindb end
-
+/
 shcbin start
 MC userbinid 521069
 /
