@@ -127,6 +127,8 @@ void filehandler::parse(std::string tableName/*, std::string find*/)
 	{
 		std::cout << "failed to open file" << std::endl;
 	}
+
+	filestream.close();
 }
 
 bool filehandler::isAlpha(const std::string &input)
