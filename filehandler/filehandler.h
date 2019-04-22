@@ -4,7 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include <map>
+#include <unordered_map>
 
 #include <string>
 #include <string.h>
@@ -46,7 +46,10 @@ private:
 #endif
 
 //typedef std::pair<std::string, std::string> PAIR;
+typedef std::unordered_map<std::string, std::string> umap;
+typedef std::unordered_map<std::string, std::string>::const_iterator iter;
 
+template <typename T, typename Iterator>
 class filehandler
 {
 public:
@@ -67,7 +70,9 @@ private:
 	//std::multimap<std::string, name_value> mmap;
 	//std::multimap<std::string, std::pair<std::string, std::string>> mmap;
 	//std::vector<data<shcextbindb>> container;
-	std::multimap<std::string, std::string> mmap;
+	//std::unordered_map<std::string, std::string> param;
+	T param;
+	Iterator iter;
 
 	bool isAlpha(const std::string &input);
 	bool isComment(const std::string &input);

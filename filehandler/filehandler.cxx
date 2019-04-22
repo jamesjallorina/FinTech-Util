@@ -118,7 +118,7 @@ void filehandler::parse(std::string tableName/*, std::string find*/)
 			std::cout << "templateMember : " << templateMember << std::endl;
 			std::cout << "templateName : " << templateName << std::endl;
 			std::cout << "templateVal : " << templateVal << std::endl;
-			mmap.insert(std::make_pair(templateMember + templateName, templateVal));
+			param.insert(std::make_pair(templateMember + templateName, templateVal));
 				//nv.name = templateName;
 				//nv.value = templateVal;
 				//mmap.insert(templateMember, std::pair<std::string, std::string>(templateName, templateVal));
@@ -139,9 +139,9 @@ void filehandler::parse(std::string tableName/*, std::string find*/)
 
 bool filehandler::find(const std::string &key, std::string &value)
 {
-	std::multimap<std::string, std::string>::const_iterator it;
+	iter it;
 
-	for(it = mmap.begin(); it != mmap.end(); ++it)
+	for(it = param.begin(); it != param.end(); ++it)
 	{
 		if(it->first == key)
 		{
@@ -154,9 +154,9 @@ bool filehandler::find(const std::string &key, std::string &value)
 
 void filehandler::show()
 {
-	std::multimap<std::string, std::string>::const_iterator it;
+	iter it;
 
-	for(it = mmap.begin(); it != mmap.end(); ++it)
+	for(it = param.begin(); it != param.end(); ++it)
 		std::cout << it->first << " "  << it->second << std::endl;
 
 	return;
@@ -197,7 +197,7 @@ bool filehandler::isComment(const std::string &input)
 int main(int argc, char **argv)
 {
 	std::string value = "";
-	filehandler p("/home/skye/repository/jamesjallorina/FinTech-Util/filehandler/template.dat");
+	filehandler <umap, iter> p("/home/skye/repository/jamesjallorina/FinTech-Util/filehandler/param_template.dat");
 	//p.parse("shcextbindb", "MC");
 	p.parse("shcextbindb");
 	p.show();
