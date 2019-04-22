@@ -15,18 +15,12 @@
 #				  VISA_userbind 222222
 #				  shcbin end
 ######################################################################################################################
+
 shcextbindb start
-MC lowbin 5210690000000000
-MC highbin 5210699999999999
-MC cardproduct BDOPHMC
+MC lowbin 11111122
+MC highbin 11111133
 /
-VISA lowbin 4895040000000000
-VISA highbin 4895049999999999
-VISA cardproduct BDOPHVISA
+VISA lowbin 22222233
+VISA highbin 22222244
+/
 shcextbindb end
-/
-shcbin start
-MC userbinid 521069
-/
-VISA userbinid 489504
-shcbin end
