@@ -143,7 +143,7 @@ void filehandler<T, Iterator>::parse(std::string tableName/*, std::string find*/
 template <typename T, typename Iterator>
 bool filehandler<T, Iterator>::find(const std::string &key, std::string &value)
 {
-	iter it;
+	Iterator it;
 
 	for(it = param.begin(); it != param.end(); ++it)
 	{
@@ -159,7 +159,7 @@ bool filehandler<T, Iterator>::find(const std::string &key, std::string &value)
 template <typename T, typename Iterator>
 void filehandler<T, Iterator>::show()
 {
-	iter it;
+	Iterator it;
 
 	for(it = param.begin(); it != param.end(); ++it)
 		std::cout << it->first << " "  << it->second << std::endl;
@@ -204,7 +204,8 @@ bool filehandler<T, Iterator>::isComment(const std::string &input)
 int main(int argc, char **argv)
 {
 	std::string value = "";
-	filehandler <umap, iter> p("/home/skye/repository/jamesjallorina/FinTech-Util/filehandler/param_template.dat");
+	//filehandler <umap, iter> p("/home/skye/repository/jamesjallorina/FinTech-Util/filehandler/param_template.dat");
+	filehandler <umap, iter> p("/home/skye/repository/FinTech-Util/filehandler/param_template.dat");
 	//p.parse("shcextbindb", "MC");
 	p.parse("shcextbindb");
 	p.show();

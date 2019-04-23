@@ -46,8 +46,8 @@ private:
 #endif
 
 //typedef std::pair<std::string, std::string> PAIR;
-//typedef std::unordered_map<std::string, std::string> umap;
-//typedef std::unordered_map<std::string, std::string>::const_iterator iter;
+typedef std::unordered_map<std::string, std::string> umap;
+typedef std::unordered_map<std::string, std::string>::const_iterator iter;
 
 template <typename T, typename Iterator>
 class filehandler
