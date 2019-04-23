@@ -11,20 +11,24 @@ filehandler::filehandler()
 }
 #endif
 
-filehandler::filehandler(const std::string filename)
+template <typename T, typename Iterator>
+filehandler<T, Iterator>::filehandler(const std::string filename)
 {
 	this->filename = filename;
 }
 
-filehandler::filehandler(const filehandler &file)
+template <typename T, typename Iterator>
+filehandler<T, Iterator>::filehandler(const filehandler &file)
 {
 	filename = file.filename;	
 }
 
-filehandler::~filehandler() {}
+template <typename T, typename Iterator>
+filehandler<T, Iterator>::~filehandler() {}
 
 
-void filehandler::parse(std::string tableName/*, std::string find*/)
+template <typename T, typename Iterator>
+void filehandler<T, Iterator>::parse(std::string tableName/*, std::string find*/)
 {
 	size_t found = 0;
 	size_t pos = 0;
@@ -136,8 +140,8 @@ void filehandler::parse(std::string tableName/*, std::string find*/)
 	filestream.close();
 }
 
-
-bool filehandler::find(const std::string &key, std::string &value)
+template <typename T, typename Iterator>
+bool filehandler<T, Iterator>::find(const std::string &key, std::string &value)
 {
 	iter it;
 
@@ -152,7 +156,8 @@ bool filehandler::find(const std::string &key, std::string &value)
 	return false;
 }
 
-void filehandler::show()
+template <typename T, typename Iterator>
+void filehandler<T, Iterator>::show()
 {
 	iter it;
 
@@ -162,7 +167,8 @@ void filehandler::show()
 	return;
 }
 
-bool filehandler::isAlpha(const std::string &input)
+template <typename T, typename Iterator>
+bool filehandler<T, Iterator>::isAlpha(const std::string &input)
 {
 	std::string::const_iterator it;
 
@@ -178,7 +184,8 @@ bool filehandler::isAlpha(const std::string &input)
 	return true;
 }
 
-bool filehandler::isComment(const std::string &input)
+template <typename T, typename Iterator>
+bool filehandler<T, Iterator>::isComment(const std::string &input)
 {
 	std::string::const_iterator it;
 	for(it = input.begin(); it != input.end(); ++it)

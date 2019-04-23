@@ -46,8 +46,8 @@ private:
 #endif
 
 //typedef std::pair<std::string, std::string> PAIR;
-typedef std::unordered_map<std::string, std::string> umap;
-typedef std::unordered_map<std::string, std::string>::const_iterator iter;
+//typedef std::unordered_map<std::string, std::string> umap;
+//typedef std::unordered_map<std::string, std::string>::const_iterator iter;
 
 template <typename T, typename Iterator>
 class filehandler
@@ -72,7 +72,6 @@ private:
 	//std::vector<data<shcextbindb>> container;
 	//std::unordered_map<std::string, std::string> param;
 	T param;
-	Iterator iter;
 
 	bool isAlpha(const std::string &input);
 	bool isComment(const std::string &input);
