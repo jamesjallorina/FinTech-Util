@@ -205,8 +205,15 @@ int main(int argc, char **argv)
 {
 	std::string value = "";
 	//filehandler <umap, iter> p("/home/skye/repository/jamesjallorina/FinTech-Util/filehandler/param_template.dat");
-	filehandler <umap, iter> p("/home/skye/repository/FinTech-Util/filehandler/param_template.dat");
+	//filehandler <umap, iter> p("/home/skye/repository/FinTech-Util/filehandler/param_template.dat");
 	//p.parse("shcextbindb", "MC");
+	if(argc < 2)
+	{
+		std::cout << "usage: " << std::endl;
+		std::cout << "filehandler [filename]" << std::endl;
+	}
+
+	filehandler <umap, iter> p(argv[1]);
 	p.parse("shcextbindb");
 	p.show();
 
