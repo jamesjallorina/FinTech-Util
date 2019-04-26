@@ -9,25 +9,20 @@
 #				  To introduce a new member name or new line you should separate a new line with indicator [/] 
 #				  then followed  by step 2. 
 #				  After you defined all the contents, you should end it with step 3.
-# Example		: shcbin start
-#				  MC_userbinid 111111
+# Example		: tablename start
+#				  TEMP column 111111
 #				  /
-#				  VISA_userbind 222222
-#				  shcbin end
+#				  TEMP2 column 22222
+#				  tablename end
 ######################################################################################################################
-shcextbindb start
+tablename start
 /
-MC lowbin 5210690000000000
-MC highbin 5210699999999999
-MC cardproduct BDOPHMC
+TEMP column1 value1 
+TEMP column2 value2
+TEMP column3 value3
 /
-VISA lowbin 4895040000000000
-VISA highbin 4895049999999999
-VISA cardproduct BDOPHVISA
-shcextbindb end
+TEMP column1 value1 
+TEMP column2 value2
+TEMP column3 value3
 /
-shcbin start
-MC userbinid 521069
-/
-VISA userbinid 489504
-shcbin end
+tablename end
