@@ -211,6 +211,7 @@ int main(int argc, char **argv)
 	{
 		std::cout << "usage: " << std::endl;
 		std::cout << "filehandler [filename]" << std::endl;
+		return EXIT_FAILURE;
 	}
 
 	filehandler <umap, iter> p(argv[1]);
