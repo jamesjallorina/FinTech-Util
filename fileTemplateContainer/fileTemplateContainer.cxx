@@ -1,34 +1,34 @@
-#include "filehandler.h"
+#include "fileTemplateContainer.h"
 
 
 //#define SLEEP
 #define COMMENT '#'
 
 #if 0
-filehandler::filehandler()
+fileTemplateContainer::filehandler()
 {
 	filename = "";
 }
 #endif
 
 template <typename T, typename Iterator>
-filehandler<T, Iterator>::filehandler(const std::string filename)
+fileTemplateContainer<T, Iterator>::filehandler(const std::string filename)
 {
 	this->filename = filename;
 }
 
 template <typename T, typename Iterator>
-filehandler<T, Iterator>::filehandler(const filehandler &file)
+fileTemplateContainer<T, Iterator>::filehandler(const filehandler &file)
 {
 	filename = file.filename;	
 }
 
 template <typename T, typename Iterator>
-filehandler<T, Iterator>::~filehandler() {}
+fileTemplateContainer<T, Iterator>::~filehandler() {}
 
 
 template <typename T, typename Iterator>
-void filehandler<T, Iterator>::parse(std::string tableName/*, std::string find*/)
+void fileTemplateContainer<T, Iterator>::parse(std::string tableName/*, std::string find*/)
 {
 	size_t found = 0;
 	size_t pos = 0;
@@ -141,7 +141,7 @@ void filehandler<T, Iterator>::parse(std::string tableName/*, std::string find*/
 }
 
 template <typename T, typename Iterator>
-bool filehandler<T, Iterator>::find(const std::string &key, std::string &value)
+bool fileTemplateContainer<T, Iterator>::find(const std::string &key, std::string &value)
 {
 	Iterator it;
 
@@ -157,7 +157,7 @@ bool filehandler<T, Iterator>::find(const std::string &key, std::string &value)
 }
 
 template <typename T, typename Iterator>
-void filehandler<T, Iterator>::show()
+void fileTemplateContainer<T, Iterator>::show()
 {
 	Iterator it;
 
@@ -168,7 +168,7 @@ void filehandler<T, Iterator>::show()
 }
 
 template <typename T, typename Iterator>
-bool filehandler<T, Iterator>::isAlpha(const std::string &input)
+bool fileTemplateContainer<T, Iterator>::isAlpha(const std::string &input)
 {
 	std::string::const_iterator it;
 
@@ -185,7 +185,7 @@ bool filehandler<T, Iterator>::isAlpha(const std::string &input)
 }
 
 template <typename T, typename Iterator>
-bool filehandler<T, Iterator>::isComment(const std::string &input)
+bool fileTemplateContainer<T, Iterator>::isComment(const std::string &input)
 {
 	std::string::const_iterator it;
 	for(it = input.begin(); it != input.end(); ++it)
@@ -204,16 +204,16 @@ bool filehandler<T, Iterator>::isComment(const std::string &input)
 int main(int argc, char **argv)
 {
 	std::string value = "";
-	//filehandler <umap, iter> p("/home/skye/repository/jamesjallorina/FinTech-Util/filehandler/param_template.dat");
-	//filehandler <umap, iter> p("/home/skye/repository/FinTech-Util/filehandler/param_template.dat");
+	//fileTemplateContainer <umap, iter> p("/home/skye/repository/jamesjallorina/FinTech-Util/filehandler/param_template.dat");
+	//fileTemplateContainer <umap, iter> p("/home/skye/repository/FinTech-Util/filehandler/param_template.dat");
 	//p.parse("shcextbindb", "MC");
 	if(argc < 2)
 	{
 		std::cout << "usage: " << std::endl;
-		std::cout << "filehandler [filename]" << std::endl;
+		std::cout << "fileTemplateContainer [filename]" << std::endl;
 	}
 
-	filehandler <umap, iter> p(argv[1]);
+	fileTemplateContainer <umap, iter> p(argv[1]);
 	p.parse("shcextbindb");
 	p.show();
 

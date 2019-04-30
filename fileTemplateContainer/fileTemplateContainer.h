@@ -50,19 +50,19 @@ typedef std::unordered_map<std::string, std::string> umap;
 typedef std::unordered_map<std::string, std::string>::const_iterator iter;
 
 template <typename T, typename Iterator>
-class filehandler
+class fileTemplateContainer
 {
 public:
-	filehandler(const std::string filename);
-	filehandler(const filehandler &file);
-	~filehandler();
+	fileTemplateContainer(const std::string filename);
+	fileTemplateContainer(const filehandler &file);
+	~fileTemplateContainer();
 
 	void parse(std::string tableName/*, std::string find*/);
 	bool find(const std::string &key, std::string &value);
 	void show();
 
 private:
-	filehandler(); //we dont want a default ctor 
+	fileTemplateContainer(); //we dont want a default ctor 
 	
 	std::string filename;
 	std::ifstream filestream;
