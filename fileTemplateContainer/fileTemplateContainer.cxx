@@ -21,6 +21,7 @@ template <typename T, typename Iterator>
 fileTemplateContainer<T, Iterator>::fileTemplateContainer(const fileTemplateContainer &file)
 {
 	filename = file.filename;	
+    param = file.param;
 }
 
 template <typename T, typename Iterator>
