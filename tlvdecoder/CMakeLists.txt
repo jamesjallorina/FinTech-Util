@@ -4,9 +4,9 @@
 # 3. Following are the steps to compile
 #	a. mkdir build
 #	b. cd build
-#	c. cmake ../elevator_logic
+#	c. cmake ../tlvdecoder
 #	d. make
-# The final executable is in the build directory <elevator>
+# The final executable is in the build directory <tlvdecoder>
 project(tlvdecoder)
 
 add_executable(tlvdecoder tlvdecoder.cxx)
