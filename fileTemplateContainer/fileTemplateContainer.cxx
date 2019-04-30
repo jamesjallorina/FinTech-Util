@@ -138,6 +138,7 @@ void fileTemplateContainer<T, Iterator>::parse(std::string tableName/*, std::str
 	}
 
 	filestream.close();
+	return;
 }
 
 template <typename T, typename Iterator>
