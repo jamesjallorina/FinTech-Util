@@ -57,10 +57,15 @@ public:
 	fileTemplateContainer(const fileTemplateContainer &file);
 	~fileTemplateContainer();
 
-	void parse(std::string tableName/*, std::string find*/);
+	bool parse(std::string tableName/*, std::string find*/);
 	bool find(const std::string &key, std::string &value);
 	void show();
+	bool openFile();
+	void closeFile();
 
+
+	void setfile(std::string filename);
+	
 private:
 	fileTemplateContainer(); //we dont want a default ctor 
 	

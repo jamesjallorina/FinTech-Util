@@ -26,9 +26,62 @@ fileTemplateContainer<T, Iterator>::fileTemplateContainer(const fileTemplateCont
 template <typename T, typename Iterator>
 fileTemplateContainer<T, Iterator>::~fileTemplateContainer() {}
 
+template <typename T, typename Iterator>
+void fileTemplateContainer<T, Iterator>::setfile(std::string filename)
+{
+	if (filename.empty())
+		std::cout << "not a valid filename" << std::endl;
+	else
+	{
+		std::cout << "filename set to: " << filename << std::endl;
+		this->filename = filename;
+	}
+	return;
+}
+
 
 template <typename T, typename Iterator>
-void fileTemplateContainer<T, Iterator>::parse(std::string tableName/*, std::string find*/)
+bool fileTemplateContainer<T, Iterator>::openFile()
+{
+	if (this->filename.empty())
+	{
+		std::cout << "filename is not valid " << std::endl;
+		return false;
+	}
+
+	filestream.open(this->filename);
+
+	if (filestream.is_open())
+	{
+		std::cout << "file is okay to read" << std::endl;
+		return true;
+	}
+	else
+	{
+		std::cout << "failed to open file: " << this->filename << std::endl;
+	}
+
+	return false;
+}
+
+template <typename T, typename Iterator>
+void fileTemplateContainer<T, Iterator>::closeFile()
+{
+	if (filestream.is_open())
+	{
+		std::cout << "closing file: " << this->filename << std::endl;
+		filestream.close();
+	}
+	else
+		std::cout << "filename already closed: " << this->filename << std::endl;
+
+	return;
+}
+
+
+
+template <typename T, typename Iterator>
+bool fileTemplateContainer<T, Iterator>::parse(std::string tableName/*, std::string find*/)
 {
 	size_t found = 0;
 	size_t pos = 0;
@@ -43,102 +96,84 @@ void fileTemplateContainer<T, Iterator>::parse(std::string tableName/*, std::str
 	std::cout << "table name : " << tableName << std::endl;
 	//std::cout << "find : " << find << std::endl;
 
-	filestream.open(filename);
 
-	if(filestream.is_open())
+	if(!openFile())
+		return false;
+
+	while( getline(filestream, line))
 	{
-		std::cout << "file is okay to read" << std::endl;
-
-		while( getline(filestream, line))
+		//check line 
+		std::cout << "line : " << line << std::endl;
+		if(!isAlpha(line) || isComment(line))
 		{
-			//check line 
-			std::cout << "line : " << line << std::endl;
-			if(!isAlpha(line) || isComment(line))
-			{
-				std::cout << "is a comment or not an alphanumeric and space" << std::endl;
-				continue;
-			}
+			std::cout << "is a comment or not an alphanumeric and space" << std::endl;
+			continue;
+		}
 
-			//file handling should start with table name and start
-			/*
-			*	search for table name and start hint
-			*/
-			if(line.find(tableName) != std::string::npos && line.find("start") != std::string::npos && isStart == false)
-			{
-				std::cout << "found tableName : " << tableName << " start" << std::endl;
-				isStart = true;
-				continue; 	//continue to the next line
-			}
-			else
-			{
-				std::cout << "looping through file " << std::endl;
-			}
+		//file handling should start with table name and start
+		/*
+		*	search for table name and start hint
+		*/
+		if(line.find(tableName) != std::string::npos && line.find("start") != std::string::npos && isStart == false)
+		{
+			std::cout << "found tableName : " << tableName << " start" << std::endl;
+			isStart = true;
+			continue; 	//continue to the next line
+		}
+		else
+		{
+			std::cout << "looping through file " << std::endl;
+		}
 
-			if(line.find(tableName) != std::string::npos && line.find("end") != std::string::npos)
-			{
-				std::cout << "found tableName : " << tableName << " end" << std::endl;
-				std::cout << "stop parsing" << std::endl;
-				break;
-			}
+		if(line.find(tableName) != std::string::npos && line.find("end") != std::string::npos)
+		{
+			std::cout << "found tableName : " << tableName << " end" << std::endl;
+			std::cout << "stop parsing" << std::endl;
+			break;
+		}
+		//std::cout << "finding : " << find << " inside the template" << std::endl;
+		//found = line.find(find);
+		//if(found != std::string::npos)
+		//{
+		//std::cout << "found key at : " << found << std::endl;
+		
+		std::cout << "current line : " << line << std::endl;
+		//std::cout << "ctr : " << ctr << std::endl;
+		pos = line.find(" ");
 
-
-			//std::cout << "finding : " << find << " inside the template" << std::endl;
-			//found = line.find(find);
-			//if(found != std::string::npos)
-			//{
-				//std::cout << "found key at : " << found << std::endl;
-
-			
-
-			std::cout << "current line : " << line << std::endl;
-				//std::cout << "ctr : " << ctr << std::endl;
-			pos = line.find(" ");
-
-				if(pos != std::string::npos)
-					token = line.substr(0, pos);
+		if(pos != std::string::npos)
+			token = line.substr(0, pos);
 
 					
-			line.erase(0, pos + 1);
-			std::cout << "first token : " << token << std::endl;
-			templateMember = token;
+		line.erase(0, pos + 1);
+		std::cout << "first token : " << token << std::endl;
+		templateMember = token;
 
-				if((pos = line.find(" ")) != std::string::npos)
-					token = line.substr(0, pos);
+		if((pos = line.find(" ")) != std::string::npos)
+			token = line.substr(0, pos);
 					
-					//line.erase(0, pos + 1);	//erase + 1 since it is only space
-			std::cout << "second token : " << token << std::endl;
-					//	if(ctr == 2)
-					//		templateName = token;
-					//	else if(ctr == 3)
-					//		templateVal = token;
-			templateName = token;
-			token = line.erase(0, pos + 1);	//erase + 1 since it is only space
-			std::cout << "third token : " << token << std::endl;
-				templateVal = token;
+		//line.erase(0, pos + 1);	//erase + 1 since it is only space
+		std::cout << "second token : " << token << std::endl;
+
+		templateName = token;
+		token = line.erase(0, pos + 1);	//erase + 1 since it is only space
+		std::cout << "third token : " << token << std::endl;
+		templateVal = token;
 #if defined(SLEEP)
-					sleep(1);
-#endif
-				
-			std::cout << "templateMember : " << templateMember << std::endl;
-			std::cout << "templateName : " << templateName << std::endl;
-			std::cout << "templateVal : " << templateVal << std::endl;
-			param.insert(std::make_pair(templateMember + templateName, templateVal));
-				//nv.name = templateName;
-				//nv.value = templateVal;
-				//mmap.insert(templateMember, std::pair<std::string, std::string>(templateName, templateVal));
-			//}
+			sleep(1);
+#endif	
+		std::cout << "templateMember : " << templateMember << std::endl;
+		std::cout << "templateName : " << templateName << std::endl;
+		std::cout << "templateVal : " << templateVal << std::endl;
+		param.insert(std::make_pair(templateMember + templateName, templateVal));
 #if defined(SLEEP)
 			sleep(1);
 #endif
-		}
-	}
-	else
-	{
-		std::cout << "failed to open file" << std::endl;
+		
 	}
 
-	filestream.close();
-	return;
+	closeFile();
+	return true;
 }
 
 template <typename T, typename Iterator>
@@ -197,10 +232,6 @@ bool fileTemplateContainer<T, Iterator>::isComment(const std::string &input)
 	
 	return false;
 }
-
-
-
-
 
 int main(int argc, char **argv)
 {
