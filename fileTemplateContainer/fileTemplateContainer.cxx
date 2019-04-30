@@ -5,26 +5,26 @@
 #define COMMENT '#'
 
 #if 0
-fileTemplateContainer::filehandler()
+fileTemplateContainer::fileTemplateContainer()
 {
 	filename = "";
 }
 #endif
 
 template <typename T, typename Iterator>
-fileTemplateContainer<T, Iterator>::filehandler(const std::string filename)
+fileTemplateContainer<T, Iterator>::fileTemplateContainer(const std::string filename)
 {
 	this->filename = filename;
 }
 
 template <typename T, typename Iterator>
-fileTemplateContainer<T, Iterator>::filehandler(const filehandler &file)
+fileTemplateContainer<T, Iterator>::fileTemplateContainer(const fileTemplateContainer &file)
 {
 	filename = file.filename;	
 }
 
 template <typename T, typename Iterator>
-fileTemplateContainer<T, Iterator>::~filehandler() {}
+fileTemplateContainer<T, Iterator>::~fileTemplateContainer() {}
 
 
 template <typename T, typename Iterator>
@@ -204,18 +204,15 @@ bool fileTemplateContainer<T, Iterator>::isComment(const std::string &input)
 int main(int argc, char **argv)
 {
 	std::string value = "";
-	//fileTemplateContainer <umap, iter> p("/home/skye/repository/jamesjallorina/FinTech-Util/filehandler/param_template.dat");
-	//fileTemplateContainer <umap, iter> p("/home/skye/repository/FinTech-Util/filehandler/param_template.dat");
+	//fileTemplateContainer <umap, iter> p("/home/skye/repository/jamesjallorina/FinTech-Util/fileTemplateContainer/param_template.dat");
+	//fileTemplateContainer <umap, iter> p("/home/skye/repository/FinTech-Util/fileTemplateContainer/param_template.dat");
 	//p.parse("shcextbindb", "MC");
 	if(argc < 2)
 	{
 		std::cout << "usage: " << std::endl;
-<<<<<<< HEAD:fileTemplateContainer/fileTemplateContainer.cxx
+
 		std::cout << "fileTemplateContainer [filename]" << std::endl;
-=======
-		std::cout << "filehandler [filename]" << std::endl;
 		return EXIT_FAILURE;
->>>>>>> refs/remotes/origin/master:filehandler/filehandler.cxx
 	}
 
 	fileTemplateContainer <umap, iter> p(argv[1]);

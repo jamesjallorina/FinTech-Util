@@ -1,5 +1,5 @@
-#ifndef FILE_HANDLER_H
-#define FILE_HANDLER_H
+#ifndef FILE_TEMPLATE_CONTAINER_H
+#define FILE_TEMPLATE_CONTAINER_H
 
 #include <iostream>
 #include <fstream>
@@ -54,7 +54,7 @@ class fileTemplateContainer
 {
 public:
 	fileTemplateContainer(const std::string filename);
-	fileTemplateContainer(const filehandler &file);
+	fileTemplateContainer(const fileTemplateContainer &file);
 	~fileTemplateContainer();
 
 	void parse(std::string tableName/*, std::string find*/);
@@ -77,4 +77,4 @@ private:
 	bool isComment(const std::string &input);
 };
 
-#endif //FILE_HANDLER_H
+#endif //FILE_TEMPLATE_CONTAINER_H
