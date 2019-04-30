@@ -210,7 +210,12 @@ int main(int argc, char **argv)
 	if(argc < 2)
 	{
 		std::cout << "usage: " << std::endl;
+<<<<<<< HEAD:fileTemplateContainer/fileTemplateContainer.cxx
 		std::cout << "fileTemplateContainer [filename]" << std::endl;
+=======
+		std::cout << "filehandler [filename]" << std::endl;
+		return EXIT_FAILURE;
+>>>>>>> refs/remotes/origin/master:filehandler/filehandler.cxx
 	}
 
 	fileTemplateContainer <umap, iter> p(argv[1]);
