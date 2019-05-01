@@ -201,7 +201,7 @@ private:
 	std::string issuer_authorization_code;
 
 	void string_init();
-	void string_copy(const emvparser &e);
+	//void string_copy(const emvparser &e);
 };
 
 #endif //TLV_DECODER_H
