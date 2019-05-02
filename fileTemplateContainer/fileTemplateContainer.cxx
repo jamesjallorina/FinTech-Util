@@ -194,7 +194,7 @@ bool fileTemplateContainer<T, Iterator>::find(const std::string &key, std::strin
 }
 
 template <typename T, typename Iterator>
-void fileTemplateContainer<T, Iterator>::show()
+void fileTemplateContainer<T, Iterator>::showContents()
 {
 	Iterator it;
 
