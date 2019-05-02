@@ -250,7 +250,7 @@ int main(int argc, char **argv)
 
 	fileTemplateContainer <umap, iter> p(argv[1]);
 	p.parse("shcextbindb");
-	p.show();
+	p.showContents();
 
 	std::cout << "test find key" << std::endl;
 
